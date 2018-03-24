@@ -1,7 +1,7 @@
 # RSnippets
 Collection of R code snippets
 
-### Hello World
+### Hello World and basic functions
     sayHello <- function(){
     print('hello')
     }
