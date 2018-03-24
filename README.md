@@ -7,12 +7,12 @@ Collection of R code snippets
     }
     sayHello()
 
-### Assign
-    var <- value
+### Assign values to variables
+    MyVar <- value
 #### or
-    var = value
+    MyVar = value
 #### or
-    value -> var
+    value -> MyVar
     
 
 ### Installing libraries
@@ -26,3 +26,7 @@ Collection of R code snippets
 #### or
     sapply(mydata, mean, na.rm=TRUE)
     
+
+### Column normalization (z-transformation)
+#### The result will have mean=0 and sd=1.
+    NormalizedVar <- (myVar - mean(myVar)) / sd(myVar)
