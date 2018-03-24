@@ -7,6 +7,13 @@ Collection of R code snippets
     }
     sayHello()
 
+### Assign
+    var <- value
+#### or
+    var = value
+#### or
+    value -> var
+    
 
 ### Installing libraries
 #### i.e.: shiny
