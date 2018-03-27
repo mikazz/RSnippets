@@ -39,9 +39,6 @@ Collection of R code snippets
 
 ### Basic Histogram
     hist(data1$X)
-
-### Basic Plot
-    plot(data1$X, data1$Y)
     
 ### Linear Model
     X <- data1 $X
@@ -50,9 +47,16 @@ Collection of R code snippets
 
     lm.linear <- lm ( Y ~ X)
     lm.linear
-#### Summary of model
+#### Model summary
     summary(lm.linear)
+
+#### Add plot with regression line 
+    # Make simple plot of X and Y
+    plot(data1$X, data1$Y)
+    # Add regression line
+    abline(lm.linear)
+
     
 ####    ***  0 < p < 0.001
 ####    **   0.001 < p < 0.01
-####    * oznacza 0.01 < p < 0.05
+####    *    0.01 < p < 0.05
