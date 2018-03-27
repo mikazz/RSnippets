@@ -30,3 +30,29 @@ Collection of R code snippets
 ### Column normalization (z-transformation)
 #### The result will have mean=0 and sd=1.
     NormalizedVar <- (myVar - mean(myVar)) / sd(myVar)
+
+
+### Load dataset
+#### data.txt
+    data1 <- read.table ("data.txt", header=TRUE)
+
+
+### Basic Histogram
+    hist(data1$X)
+
+### Basic Plot
+    plot(data1$X, data1$Y)
+    
+### Linear Model
+    X <- data1 $X
+    Y <- data1 $Y
+    lm(Y ~ X )
+
+    lm.linear <- lm ( Y ~ X)
+    lm.linear
+#### Summary of model
+    summary(lm.linear)
+    
+####    ***  0 < p < 0.001
+####    **   0.001 < p < 0.01
+####    * oznacza 0.01 < p < 0.05
