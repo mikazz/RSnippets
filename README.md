@@ -33,8 +33,22 @@ Collection of R code snippets
 
 
 ### Load dataset
-#### data.txt
+    # data.txt
     data1 <- read.table ("data.txt", header=TRUE)
+
+### Load several files (Google trends)
+
+    # Get all files in folder that match the pattern 20xx-Hx.csv
+    files<-list.files(pattern="20[0-9][0-9]-H[1-2].csv")
+    
+    # Load all files
+    print("Loading files...")
+    for(n in 1:length(files)){
+        # Import the file and sort the headers
+        print(files[n])
+        temp=read.table(files[n], header=T, sep=",")
+    }
+
 
 
 ### Basic Histogram
@@ -47,6 +61,7 @@ Collection of R code snippets
 
     lm.linear <- lm ( Y ~ X)
     lm.linear
+
 #### Model summary
     summary(lm.linear)
 
