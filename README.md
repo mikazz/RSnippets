@@ -41,6 +41,30 @@ Collection of R code snippets
 ### Load dataset
     # data.txt
     data1 <- read.table("data.txt", header=TRUE)
+    
+#### Comma Delimited Files
+    read_csv("file.csv")
+    # To make file.csv run:
+    write_file(x = "a,b,c\n1,2,3\n4,5,NA", path = "file.csv")
+    
+#### Semi-colon Delimited Files
+    read_csv2("file2.csv")
+    write_file(x = "a;b;c\n1;2;3\n4;5;NA", path = "file2.csv")
+
+#### Files with Any Delimiter
+    read_delim("file.txt", delim = "|")
+    write_file(x = "a|b|c\n1|2|3\n4|5|NA", path = "file.txt")
+
+#### Fixed Width Files
+    read_fwf("file.fwf", col_positions = c(1, 3, 5))
+    write_file(x = "a b c\n1 2 3\n4 5 NA", path = "file.fwf")
+
+#### Tab Delimited Files
+    read_tsv("file.tsv") Also read_table().
+    write_file(x = "a\tb\tc\n1\t2\t3\n4\t5\tNA", path = "file.tsv")
+    
+    
+    
 
 ### Load several files (Google trends)
 
