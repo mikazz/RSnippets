@@ -60,6 +60,31 @@ Collection of R code snippets
 ### Basic Histogram
     hist(data1$X)
     
+    
+### Histogram and Frequency
+    library(MASS)
+    data(anorexia)
+    attach(anorexia)
+
+    # Create area for 2 plots
+    par(mfrow=c(1,2), pty="s" )
+    options(OutDec=",")
+
+    #Histogram
+    hist(Prewt, breaks=nclass.FD(Prewt), main="", col="slategrey", xlab="Weight", ylab="Frequency")
+    title("a)", font.main=1)
+
+    #Density function
+    hist(Prewt, freq=FALSE, breaks=nclass.FD(Prewt), main="", col="slategrey", xlab="Weight", ylab="Density")
+    title("b)", font.main=1)
+
+    lines(density(Prewt, kernel="gaussian", width=10, n=150))
+    detach(anorexia)
+
+
+
+
+    
 ### Linear Model
     X <- data1 $X
     Y <- data1 $Y
