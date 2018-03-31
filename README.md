@@ -15,16 +15,27 @@ Collection of R code snippets
     value -> MyVar
 
 ### Assign vectors
-    # All integers in the range 2-8
-    vector_var <- 2:8
-    # Which is the same as
-    vector_var <- c(2,3,4,5,6,7,8)
+    # Join elements into a vector
+    vector_var <- c(2, 4, 6) # 2 4 6
     
+    # An integer sequence
+    vector_var <- 2:6 # 2 3 4 5 6
+    
+    # A complex sequence
+    vector_var <- seq(2, 3, by=0.5) # 2.0 2.5 3.0 
+
+    # Repeat a vector
+    vector_var <- rep(1:2, times=3) # 1 2 1 2 1 2
+
+    # Repeat elements
+    vector_var <- rep(1:2, each=3) # 1 1 1 2 2 2
 
 ### Installing libraries
-#### i.e.: shiny
+#### From bash i.e.: shiny
     sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\""
-    
+#### From R
+    # Download and install a package from CRAN
+    install.packages('dplyr')
     
 ### Descriptive Statistics
 #### mean,median,25th and 75th quartiles,min,max
@@ -32,11 +43,9 @@ Collection of R code snippets
 #### or
     sapply(mydata, mean, na.rm=TRUE)
     
-
 ### Column normalization (z-transformation)
 #### The result will have mean=0 and sd=1.
     NormalizedVar <- (myVar - mean(myVar)) / sd(myVar)
-
 
 ### Load dataset
     # data.txt
