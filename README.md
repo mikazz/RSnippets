@@ -177,6 +177,16 @@ Collection of R code snippets
 
 
 ### Statistics
+    # F test to compare two variances
+    # if p-value is bigger than given α level of significance we fail to reject the null hypothesis (no difference was     detected)
+    # i.e:
+    # p-value = 0.588 > 0.05 = α
+    var.test(x, y)
+    
+    # Two Sample t-test
+    t.test (x, y, alternative = 'less',var.equal = T)
+
+
     # Use help.search("test")
 
     # Perform a t-test for difference between means. 
