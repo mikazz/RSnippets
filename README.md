@@ -131,6 +131,50 @@ Collection of R code snippets
     lines(density(Prewt, kernel="gaussian", width=10, n=150))
     detach(anorexia)
 
+### Distributions
+    All these functions can be used by replacing the letter r with d, p or q to
+    get, respectively, the probability density (dfunc(x, ...)), the cumulative
+    probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,
+    ...), with 0 < p < 1).
+
+    #  Gaussian (normal)
+    rnorm(n, mean=0, sd=1)
+    
+    #  exponential
+    rexp(n, rate=1)
+    
+    # gamma
+    rgamma(n, shape, scale=1)
+
+    #  Poisson
+    rpois(n, lambda)
+
+    # Weibull
+    rweibull(n, shape, scale=1)
+    
+    #  Cauchy
+    rcauchy(n, location=0, scale=1)
+
+    # beta
+    rbeta(n, shape1, shape2)
+    
+    #  'Student' (t)
+    rt(n, df)
+    
+    # Fisher–Snedecor (F) (χ2)
+    rf(n, df1, df2)
+
+    rchisq(n, df) Pearson
+    rbinom(n, size, prob) binomial
+    rgeom(n, prob) geometric
+    rhyper(nn, m, n, k) hypergeometric
+    rlogis(n, location=0, scale=1) logistic
+    rlnorm(n, meanlog=0, sdlog=1) lognormal
+    rnbinom(n, size, prob) negative binomial
+    runif(n, min=0, max=1) uniform
+    rwilcox(nn, m, n), rsignrank(nn, n) Wilcoxon’s statistics
+
+
 
 ### Statistics
     # Perform a t-test for difference between means. 
