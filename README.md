@@ -132,6 +132,9 @@ Collection of R code snippets
     detach(anorexia)
 
 
+### Statistics
+    # Perform a t-test for difference between means. 
+    t.test(x, y)
 
 
     
