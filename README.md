@@ -108,10 +108,12 @@ Collection of R code snippets
 
 
 ### Basic Histogram
+    
     hist(data1$X)
     
     
 ### Histogram and Frequency
+
     library(MASS)
     data(anorexia)
     attach(anorexia)
@@ -132,10 +134,9 @@ Collection of R code snippets
     detach(anorexia)
 
 ### Distributions
-    All these functions can be used by replacing the letter r with d, p or q to
-    get, respectively, the probability density (dfunc(x, ...)), the cumulative
-    probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,
-    ...), with 0 < p < 1).
+All these functions can be used by replacing the letter r with d, p or q to
+get, respectively, the probability density (dfunc(x, ...)), the cumulative
+probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,...), with 0 < p < 1).
 
     #  Gaussian (normal)
     rnorm(n, mean=0, sd=1)
@@ -152,42 +153,59 @@ Collection of R code snippets
     # Weibull
     rweibull(n, shape, scale=1)
     
-    #  Cauchy
+    # Cauchy
     rcauchy(n, location=0, scale=1)
 
     # beta
     rbeta(n, shape1, shape2)
     
-    #  'Student' (t)
+    # 'Student' (t)
     rt(n, df)
     
     # Fisher–Snedecor (F) (χ2)
     rf(n, df1, df2)
-
-    rchisq(n, df) Pearson
-    rbinom(n, size, prob) binomial
-    rgeom(n, prob) geometric
-    rhyper(nn, m, n, k) hypergeometric
-    rlogis(n, location=0, scale=1) logistic
-    rlnorm(n, meanlog=0, sdlog=1) lognormal
-    rnbinom(n, size, prob) negative binomial
-    runif(n, min=0, max=1) uniform
-    rwilcox(nn, m, n), rsignrank(nn, n) Wilcoxon’s statistics
-
-
+    
+    # Pearson
+    rchisq(n, df)
+    
+    # binomial
+    rbinom(n, size, prob)
+    
+    # geometric
+    rgeom(n, prob)
+    
+    # hypergeometric
+    rhyper(nn, m, n, k)
+    
+    # logistic
+    rlogis(n, location=0, scale=1)
+    
+    # lognormal
+    rlnorm(n, meanlog=0, sdlog=1)
+    
+    # negative binomial
+    rnbinom(n, size, prob)
+    
+    # uniform
+    runif(n, min=0, max=1)
+    
+    # Wilcoxon’s statistics
+    rwilcox(nn, m, n), rsignrank(nn, n)
 
 ### Statistics
-#### if p-value is bigger than given α level of significance we fail to reject the null hypothesis (no difference was     detected)
-   i.e:
-   p-value = 0.588 > 0.05 = α
-   F test to compare two variances
+if p-value is bigger than given α level of significance we fail to reject the null hypothesis (no difference was     detected)
+i.e:
+p-value = 0.588 > 0.05 = α
+
+    F test to compare two variances
     var.test(x, y)
     
     # Two Sample t-test
-    t.test (x, y, alternative = 'less',var.equal = T)
+    t.test (x, y, alternative = 'less', var.equal = T)
+    
+    # Paired t-test (x and y are releated)
+    t.test (x ,y, paired = T, alternative = 'greater')
 
-
-    # Use help.search("test")
 
     # Perform a t-test for difference between means. 
     t.test(x, y)
@@ -200,7 +218,8 @@ Collection of R code snippets
     
     prop.test()
    
-    
+    # Use help.search("test")
+
 ### Linear Model
     X <- data1 $X
     Y <- data1 $Y
