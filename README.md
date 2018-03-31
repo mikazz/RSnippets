@@ -1,18 +1,24 @@
 # RSnippets
 Collection of R code snippets
 
-### Hello World and basic functions
+### Hello World from basic function
     sayHello <- function(){
-    print('hello')
+    print('Hello World')
     }
     sayHello()
 
 ### Assign values to variables
     MyVar <- value
-#### or
+    # Or
     MyVar = value
-#### or
+    # Or
     value -> MyVar
+
+### Assign vectors
+    # All integers in the range 2-8
+    vector_var <- 2:8
+    # Which is the same as
+    vector_var <- c(2,3,4,5,6,7,8)
     
 
 ### Installing libraries
@@ -34,7 +40,7 @@ Collection of R code snippets
 
 ### Load dataset
     # data.txt
-    data1 <- read.table ("data.txt", header=TRUE)
+    data1 <- read.table("data.txt", header=TRUE)
 
 ### Load several files (Google trends)
 
