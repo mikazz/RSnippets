@@ -177,10 +177,19 @@ Collection of R code snippets
 
 
 ### Statistics
+    # Use help.search("test")
+
     # Perform a t-test for difference between means. 
     t.test(x, y)
-
-
+    
+    binom.test()
+    
+    pairwise.t.test()
+    
+    power.t.test(),
+    
+    prop.test()
+   
     
 ### Linear Model
     X <- data1 $X
