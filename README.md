@@ -30,6 +30,23 @@ Collection of R code snippets
     # Repeat elements
     vector_var <- rep(1:2, each=3) # 1 1 1 2 2 2
 
+### Math functions    
+    log(x) Natural log. 
+    sum(x) Sum.
+    exp(x) Exponential. 
+    mean(x) Mean.
+    max(x) Largest element. 
+    median(x) Median.
+    min(x) Smallest element. 
+    quantile(x) Percentage quantiles.
+    round(x, n) Round to n decimal places.
+    rank(x) Rank of elements.
+    signif(x, n) Round to n significant figures.
+    var(x) The variance.
+    cor(x, y) Correlation. 
+    sd(x) The standard deviation
+    
+
 ### Installing libraries
 #### From bash i.e.: shiny
     sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\""
