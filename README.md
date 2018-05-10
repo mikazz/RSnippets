@@ -64,6 +64,9 @@ Collection of R code snippets
 #### The result will have mean=0 and sd=1.
     NormalizedVar <- (myVar - mean(myVar)) / sd(myVar)
 
+
+### Dataset Operations
+
 ### Load dataset
     # data.txt
     data1 <- read.table("data.txt", header=TRUE)
@@ -88,6 +91,11 @@ Collection of R code snippets
 #### Tab Delimited Files
     read_tsv("file.tsv") Also read_table().
     write_file(x = "a\tb\tc\n1\t2\t3\n4\t5\tNA", path = "file.tsv")
+
+#### Handling polish encoding
+
+    myData <- scan(file='file.csv', fileEncoding='windows-1250', what=character(), sep=',', allowEscapes=T)
+    cat(myData)
     
     
     
