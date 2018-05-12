@@ -57,15 +57,18 @@ Collection of R code snippets
 ### Descriptive Statistics
 #### mean,median,25th and 75th quartiles,min,max
     summary(data)
-#### or
+
+or
+
     sapply(mydata, mean, na.rm=TRUE)
     
 ### Column normalization (z-transformation)
-#### The result will have mean=0 and sd=1.
+The result will have mean=0 and sd=1.
+    
     NormalizedVar <- (myVar - mean(myVar)) / sd(myVar)
 
 
-### Dataset Operations
+## Dataset Operations
 
 ### Load dataset
 
@@ -208,6 +211,7 @@ p-value = 0.588 > 0.05 = α
    
     # Use help.search("test")
 
+
 ### Linear Model
     X <- data1 $X
     Y <- data1 $Y
@@ -216,16 +220,25 @@ p-value = 0.588 > 0.05 = α
     lm.linear <- lm ( Y ~ X)
     lm.linear
 
+
 #### Model summary
     summary(lm.linear)
 
-#### Add plot with regression line 
-    # Make simple plot of X and Y
+
+#### Add plot with regression line
+Define particular width and height for plot
+
+    dev.new(width=20, height=8)
+
+Make simple plot of X and Y
+    
     plot(data1$X, data1$Y)
-    # Add regression line
+Add regression line
+    
     abline(lm.linear)
 
-    
-####    ***  0 < p < 0.001
-####    **   0.001 < p < 0.01
-####    *    0.01 < p < 0.05
+levels of confidence
+
+***  0 < p < 0.001
+**   0.001 < p < 0.01
+*    0.01 < p < 0.05
