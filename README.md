@@ -68,42 +68,23 @@ Collection of R code snippets
 ### Dataset Operations
 
 ### Load dataset
-    # data.txt
-    data1 <- read.table("data.txt", header=TRUE)
-    
-#### Comma Delimited Files
-    read_csv("file.csv")
-    # To make file.csv run:
-    write_file(x = "a,b,c\n1,2,3\n4,5,NA", path = "file.csv")
-    
-#### Semi-colon Delimited Files
-    read_csv2("file2.csv")
-    write_file(x = "a;b;c\n1;2;3\n4;5;NA", path = "file2.csv")
-
-#### Files with Any Delimiter
-    read_delim("file.txt", delim = "|")
-    write_file(x = "a|b|c\n1|2|3\n4|5|NA", path = "file.txt")
-
-#### Fixed Width Files
-    read_fwf("file.fwf", col_positions = c(1, 3, 5))
-    write_file(x = "a b c\n1 2 3\n4 5 NA", path = "file.fwf")
-
-#### Tab Delimited Files
-    read_tsv("file.tsv") Also read_table().
-    write_file(x = "a\tb\tc\n1\t2\t3\n4\t5\tNA", path = "file.tsv")
 
 #### Handling polish encoding
 
-    myData <- scan(file='file.csv', fileEncoding='windows-1250', what=character(), sep=',', allowEscapes=T)
-    cat(myData)
+    data = read.table('history_csv_20180512_233919.csv', fileEncoding='windows-1250', header=T, sep=",")
+
+#### Show imported names
+Unless you specify check.names=FALSE, R will convert column names that are not valid variable names (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. by replacing spaces with dots.
+
+    names(data)
     
     
     
 
 ### Load several files (Google trends)
 
-    # Get all files in folder that match the pattern 20xx-Hx.csv
-    files<-list.files(pattern="20[0-9][0-9]-H[1-2].csv")
+    # Get all files in folder that match the pattern *.csv
+    files<-list.files(pattern="*.csv")
     
     # Load all files
     print("Loading files...")
@@ -112,7 +93,6 @@ Collection of R code snippets
         print(files[n])
         temp=read.table(files[n], header=T, sep=",")
     }
-
 
 
 ### Basic Histogram
