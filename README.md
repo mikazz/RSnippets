@@ -164,17 +164,14 @@ Load a built-in dataset into the environment.
     data(iris)
 
 
-
-
 # 2
+
 
 
 ### Descriptive Statistics
 #### mean,median,25th and 75th quartiles,min,max
     summary(data)
-
-or
-
+    # Or
     sapply(mydata, mean, na.rm=TRUE)
     
 ### Column normalization (z-transformation)
@@ -185,17 +182,17 @@ The result will have mean=0 and sd=1.
 ## Dataset Operations
 
 ### Load dataset
-#Handling polish encoding
-fileEncoding='windows-1250'
+    # Handling polish encoding
+    fileEncoding='windows-1250'
 
-#Skip the first 1825 lines.
-skip=1825
+    # Skip the first 1825 lines.
+    skip=1825
 
     data = read.table('data.csv', header=T, sep=",")
 
 #### Save csv
-Prevent row names to be written to file
-row.names=FALSE
+    # Prevent row names to be written to file
+    row.names=FALSE
 
     write.table(data, file = "filename", append = FALSE, quote = TRUE, sep = ",",
             eol = "\n", na = "NA", dec = ".", row.names = FALSE,
