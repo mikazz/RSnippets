@@ -182,29 +182,30 @@ The result will have mean=0 and sd=1.
     
     NormalizedVar <- (myVar - mean(myVar)) / sd(myVar)
 
-
 ## Dataset Operations
 
-
-
-
 ### Load dataset
+#Handling polish encoding
+fileEncoding='windows-1250'
 
-    # Skip the first 1825 lines.
-    data <- read.csv(file, skip=1825)
+#Skip the first 1825 lines.
+skip=1825
 
+    data = read.table('data.csv', header=T, sep=",")
 
-#### Handling polish encoding
+#### Save csv
+Prevent row names to be written to file
+row.names=FALSE
 
-    data = read.table('history_csv_20180512_233919.csv', fileEncoding='windows-1250', header=T, sep=",")
-
-
+    write.table(data, file = "filename", append = FALSE, quote = TRUE, sep = ",",
+            eol = "\n", na = "NA", dec = ".", row.names = FALSE,
+            col.names = TRUE, qmethod = c("escape", "double"),
+            fileEncoding = "windows-1250")
 
 #### Show imported names
 Unless you specify check.names=FALSE, R will convert column names that are not valid variable names (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. by replacing spaces with dots.
 
     names(data)
-    
 
 #### Load several files
 
@@ -219,12 +220,10 @@ Unless you specify check.names=FALSE, R will convert column names that are not v
         temp=read.table(files[n], header=T, sep=",")
     }
 
-
 ### Basic Histogram
     
     hist(data1$X)
-    
-    
+        
 ### Histogram and Frequency
 
     library(MASS)
@@ -245,8 +244,6 @@ Unless you specify check.names=FALSE, R will convert column names that are not v
 
     lines(density(Prewt, kernel="gaussian", width=10, n=150))
     detach(anorexia)
-
-
 
 ### Distributions
 All these functions can be used by replacing the letter r with d, p or q to
