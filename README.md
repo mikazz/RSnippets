@@ -12,11 +12,69 @@ Regex
 # 1
 
 
+
+### If Statements
+    if (condition){
+    Do something
+    } else {
+    Do something different
+    }
+
+Example
+
+    if (i > 3){
+    print(‘Yes’)
+    } else {
+    print(‘No’)
+    }
+
+
+
+
+### While
+
+    while (condition){
+    Do something
+    }
+
+Example
+
+    while (i < 5){
+    print(i)
+    i <- i + 1
+    }
+
+
+
+### For loop
+
+    for (variable in sequence){
+    Do something
+    }
+Example:
+
+    for (i in 1:4){
+    j <- i + 10
+    print(j)
+    }
+
+
+
 ### Hello World from basic function
     sayHello <- function(){
     print('Hello World')
     }
     sayHello()
+
+
+
+### Square function
+    square <- function(x){
+    squared <- x*x
+    return(squared)
+    }
+
+
 
 ### Assign values to variables
     MyVar <- value
@@ -24,6 +82,9 @@ Regex
     MyVar = value
     # Or
     value -> MyVar
+
+
+
 
 ### Assign vectors
     # Join elements into a vector
@@ -258,10 +319,11 @@ levels of confidence
     *    0.01 < p < 0.05
     
 ### Regex
+Simplest patterns match exact strings:
 
     x <- c("apple", "banana", "pear")
     str_extract(x, "an")
-#> [1] NA   "an" NA
+    #> [1] NA   "an" NA
 
 
 
