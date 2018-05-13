@@ -190,7 +190,8 @@ The result will have mean=0 and sd=1.
 
 ### Load dataset
 
-
+    # Skip the first 1825 lines.
+    data <- read.csv(file, skip=1825)
 
 
 #### Handling polish encoding
