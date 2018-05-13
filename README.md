@@ -1,6 +1,17 @@
 # RSnippets
 Collection of R code snippets
 
+
+
+Dataset Operations
+Statistics
+Linear Model
+Regex
+
+
+# 1
+
+
 ### Hello World from basic function
     sayHello <- function(){
     print('Hello World')
@@ -53,7 +64,10 @@ Collection of R code snippets
 #### From R
     # Download and install a package from CRAN
     install.packages('dplyr')
-    
+
+# 2
+
+
 ### Descriptive Statistics
 #### mean,median,25th and 75th quartiles,min,max
     summary(data)
@@ -239,6 +253,16 @@ Add regression line
 
 levels of confidence
 
-***  0 < p < 0.001
-**   0.001 < p < 0.01
-*    0.01 < p < 0.05
+    ***  0 < p < 0.001
+    **   0.001 < p < 0.01
+    *    0.01 < p < 0.05
+    
+### Regex
+
+    x <- c("apple", "banana", "pear")
+    str_extract(x, "an")
+#> [1] NA   "an" NA
+
+
+
+
