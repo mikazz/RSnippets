@@ -102,6 +102,28 @@ Example:
     # Repeat elements
     vector_var <- rep(1:2, each=3) # 1 1 1 2 2 2
 
+
+
+### Vector indexing / Selecting Vector Elements
+
+    By Position
+    x[4] The fourth element.
+    x[-4] All but the fourth.
+    x[2:4] Elements two to four.
+    x[-(2:4)] All elements except two to four.
+    
+    By Value
+    x[c(1, 5)] Elements one and five.
+    x[x == 10] Elements which are equal to 10.
+    x[x < 0] All elements less than zero.
+    x[x %in%c(1, 2, 5)] Elements in the set 1, 2, 5.
+    
+    Named Vectors
+    x[‘apple’] Element with name ‘apple’.
+
+
+
+
 ### Math functions    
     log(x) Natural log. 
     sum(x) Sum.
@@ -119,12 +141,30 @@ Example:
     sd(x) The standard deviation
     
 
-### Installing libraries
+### Libraries
+
 #### From bash i.e.: shiny
     sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\""
+
 #### From R
-    # Download and install a package from CRAN
+Download and install a package from CRAN
+    
     install.packages('dplyr')
+
+Load the package into the session, making all its functions available to use.
+    
+    library(dplyr)
+
+Use a particular function from a package.
+    
+    dplyr::select
+
+Load a built-in dataset into the environment. 
+    
+    data(iris)
+
+
+
 
 # 2
 
@@ -145,21 +185,27 @@ The result will have mean=0 and sd=1.
 
 ## Dataset Operations
 
+
+
+
 ### Load dataset
+
+
+
 
 #### Handling polish encoding
 
     data = read.table('history_csv_20180512_233919.csv', fileEncoding='windows-1250', header=T, sep=",")
+
+
 
 #### Show imported names
 Unless you specify check.names=FALSE, R will convert column names that are not valid variable names (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. by replacing spaces with dots.
 
     names(data)
     
-    
-    
 
-### Load several files (Google trends)
+#### Load several files
 
     # Get all files in folder that match the pattern *.csv
     files<-list.files(pattern="*.csv")
@@ -198,6 +244,8 @@ Unless you specify check.names=FALSE, R will convert column names that are not v
 
     lines(density(Prewt, kernel="gaussian", width=10, n=150))
     detach(anorexia)
+
+
 
 ### Distributions
 All these functions can be used by replacing the letter r with d, p or q to
@@ -257,6 +305,8 @@ probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,...), wi
     
     # Wilcoxon’s statistics
     rwilcox(nn, m, n), rsignrank(nn, n)
+
+
 
 ### Statistics
 if p-value is bigger than given α level of significance we fail to reject the null hypothesis (no difference was     detected)
