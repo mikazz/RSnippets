@@ -332,6 +332,13 @@ p-value = 0.588 > 0.05 = α
     # Use help.search("test")
 
 
+# Plot
+## Semilog plot (one log-scale axis)
+    x = 1:100
+    y = x^2
+    plot(x,y, log="y")
+
+
 ### Linear Model
     X <- data1 $X
     Y <- data1 $Y
