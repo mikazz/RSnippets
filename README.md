@@ -9,7 +9,9 @@ Linear Model
 Regex
 
 
-# 1
+# Basics
+
+
 
 
 
@@ -179,9 +181,68 @@ The result will have mean=0 and sd=1.
     
     NormalizedVar <- (myVar - mean(myVar)) / sd(myVar)
 
+
 ## Dataset Operations
 
-### Load dataset
+
+## Show imported names
+Unless you specify check.names=FALSE, R will convert column names that are not valid variable names (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. by replacing spaces with dots.
+
+    names(data)
+
+
+## Read Tabular data with separated columns (commas or tabs)
+
+	read.table(file="myfile", sep="t", header=TRUE)
+
+
+## Configured read.table() with all the arguments preset to read CSV files
+
+	read.csv(file="myfile")
+
+
+## Configured read.csv() configured for data with a comma as the decimal point and a semicolon as the separator
+	
+	read.csv2(file=”myfile”, header=TRUE)
+
+
+## Read delimited files, with tabs as the default
+	
+	read.delim(file=”myfile”, header=TRUE)
+
+
+## Allows finer control over the read process when data isn’t tabular	
+	
+	scan("myfile", skip = 1, nmax=100)
+
+
+## Reads text from a text file one line at a time	
+	
+	readLines("myfile")
+
+
+## Read a file with dates in fixed-width format (each column in the data has a fixed number of characters)
+	
+	read.fwf("myfile", widths=c(1,2,3)
+
+
+## Reads SPSS data file	
+	
+	library("foreign")
+	read.spss("myfile")
+
+
+## Reads Stata binary file	
+	
+	read.dta("myfile")
+
+
+## Reads SAS export file
+	
+	read.export("myfile")
+	
+
+## Load dataset with different encoding
     # Handling polish encoding
     fileEncoding='windows-1250'
 
@@ -190,21 +251,21 @@ The result will have mean=0 and sd=1.
 
     data = read.table('data.csv', header=T, sep=",")
 
-#### Save csv
+
+## Save csv
     # Prevent row names to be written to file
     row.names=FALSE
 
     write.table(data, file = "filename", append = FALSE, quote = TRUE, sep = ",",
-            eol = "\n", na = "NA", dec = ".", row.names = FALSE,
-            col.names = TRUE, qmethod = c("escape", "double"),
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = FALSE,
+            col.names = TRUE, 
+            qmethod = c("escape", "double"),
             fileEncoding = "windows-1250")
 
-#### Show imported names
-Unless you specify check.names=FALSE, R will convert column names that are not valid variable names (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. by replacing spaces with dots.
-
-    names(data)
-
-#### Load several files
+## Load several files
 
     # Get all files in folder that match the pattern *.csv
     files<-list.files(pattern="*.csv")
