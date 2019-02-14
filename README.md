@@ -12,18 +12,7 @@ Regex
 # Basics
 
 
-
-
-
-### If Statements
-    if (condition){
-    Do something
-    } else {
-    Do something different
-    }
-
-Example
-
+## If Statements
     if (i > 3){
     print(‘Yes’)
     } else {
@@ -31,35 +20,18 @@ Example
     }
 
 
-
-
-### While
-
-    while (condition){
-    Do something
-    }
-
-Example
-
+## While
     while (i < 5){
     print(i)
     i <- i + 1
     }
 
 
-
-### For loop
-
-    for (variable in sequence){
-    Do something
-    }
-Example:
-
+## For loop
     for (i in 1:4){
     j <- i + 10
     print(j)
     }
-
 
 
 ### Hello World from basic function
@@ -69,23 +41,19 @@ Example:
     sayHello()
 
 
-
 ### Square function
     square <- function(x){
     squared <- x*x
     return(squared)
     }
-
-
-
+    
+    
 ### Assign values to variables
     MyVar <- value
     # Or
     MyVar = value
     # Or
     value -> MyVar
-
-
 
 
 ### Assign vectors
@@ -105,9 +73,7 @@ Example:
     vector_var <- rep(1:2, each=3) # 1 1 1 2 2 2
 
 
-
 ### Vector indexing / Selecting Vector Elements
-
     By Position
     x[4] The fourth element.
     x[-4] All but the fourth.
@@ -122,8 +88,6 @@ Example:
     
     Named Vectors
     x[‘apple’] Element with name ‘apple’.
-
-
 
 
 ### Math functions    
@@ -143,27 +107,25 @@ Example:
     sd(x) The standard deviation
     
 
-### Libraries
+# Libraries
 
-#### From bash i.e.: shiny
+## Install library from bash i.e.: shiny
     sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\""
 
-#### From R
-Download and install a package from CRAN
-    
+## Install library From R
     install.packages('dplyr')
 
-Load the package into the session, making all its functions available to use.
-    
+## Load the package into the session, making all its functions available to use. 
     library(dplyr)
 
-Use a particular function from a package.
-    
+    # Use a particular function from a package.
     dplyr::select
 
-Load a built-in dataset into the environment. 
-    
+    # Load a built-in dataset into the environment. 
     data(iris)
+
+## Remove library
+    detach(package:dplyr)
 
 
 # 2
