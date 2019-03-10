@@ -34,21 +34,21 @@ Regex
     }
 
 
-### Hello World from basic function
+## Hello World from basic function
     sayHello <- function(){
     print('Hello World')
     }
     sayHello()
 
 
-### Square function
+## Square function
     square <- function(x){
     squared <- x*x
     return(squared)
     }
     
     
-### Assign values to variables
+## Assign values to variables
     MyVar <- value
     # Or
     MyVar = value
@@ -56,7 +56,7 @@ Regex
     value -> MyVar
 
 
-### Assign vectors
+## Assign vectors
     # Join elements into a vector
     vector_var <- c(2, 4, 6) # 2 4 6
     
@@ -73,7 +73,7 @@ Regex
     vector_var <- rep(1:2, each=3) # 1 1 1 2 2 2
 
 
-### Vector indexing / Selecting Vector Elements
+## Vector indexing / Selecting Vector Elements
     By Position
     x[4] The fourth element.
     x[-4] All but the fourth.
@@ -90,7 +90,7 @@ Regex
     x[‘apple’] Element with name ‘apple’.
 
 
-### Math functions    
+## Math functions    
     log(x) Natural log. 
     sum(x) Sum.
     exp(x) Exponential. 
@@ -109,11 +109,14 @@ Regex
 
 # Libraries
 
+
 ## Install library from bash i.e.: shiny
     sudo su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\""
 
+
 ## Install library From R
     install.packages('dplyr')
+
 
 ## Load the package into the session, making all its functions available to use. 
     library(dplyr)
@@ -124,27 +127,27 @@ Regex
     # Load a built-in dataset into the environment. 
     data(iris)
 
+
 ## Remove library
     detach(package:dplyr)
 
 
-# 2
+# Descriptive Statistics
 
 
-
-### Descriptive Statistics
-#### mean,median,25th and 75th quartiles,min,max
+## mean,median,25th and 75th quartiles,min,max
     summary(data)
     # Or
     sapply(mydata, mean, na.rm=TRUE)
-    
-### Column normalization (z-transformation)
+ 
+ 
+## Column normalization (z-transformation)
 The result will have mean=0 and sd=1.
     
     NormalizedVar <- (myVar - mean(myVar)) / sd(myVar)
 
 
-## Dataset Operations
+# Dataset Operations
 
 
 ## Show imported names
@@ -240,11 +243,15 @@ Unless you specify check.names=FALSE, R will convert column names that are not v
         temp=read.table(files[n], header=T, sep=",")
     }
 
-### Basic Histogram
+# Plots
+
+
+## Basic Histogram
     
     hist(data1$X)
-        
-### Histogram and Frequency
+  
+  
+## Histogram and Frequency
 
     library(MASS)
     data(anorexia)
@@ -265,7 +272,8 @@ Unless you specify check.names=FALSE, R will convert column names that are not v
     lines(density(Prewt, kernel="gaussian", width=10, n=150))
     detach(anorexia)
 
-### Distributions
+
+## Distributions
 All these functions can be used by replacing the letter r with d, p or q to
 get, respectively, the probability density (dfunc(x, ...)), the cumulative
 probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,...), with 0 < p < 1).
@@ -362,20 +370,18 @@ p-value = 0.588 > 0.05 = α
     plot(x,y, log="y")
 
 
-### Linear Model
+## Linear Model
     X <- data1 $X
     Y <- data1 $Y
     lm(Y ~ X )
 
     lm.linear <- lm ( Y ~ X)
     lm.linear
-
-
-#### Model summary
+    
     summary(lm.linear)
 
 
-#### Add plot with regression line
+## Add plot with regression line
 Define particular width and height for plot
 
     dev.new(width=20, height=8)
@@ -392,15 +398,16 @@ levels of confidence
     ***  0 < p < 0.001
     **   0.001 < p < 0.01
     *    0.01 < p < 0.05
-    
-### Regex
-Simplest patterns match exact strings:
+ 
+ 
+# Regex (Match exact strings)
 
     x <- c("apple", "banana", "pear")
     str_extract(x, "an")
     #> [1] NA   "an" NA
 
-### Shiny
+
+# Shiny
 Build interactive web apps
 
     #SERVER
