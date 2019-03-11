@@ -70,13 +70,13 @@ Collection of R code snippets
 
 
 ## Help
-    # wyświetl pomoc dotyczącą funkcji plot()
+    # Show help about function plot()
     ?plot
 
-    # wyświetl przykłady użycia funkcji plot()
+    # Show use case example of plot()
     example(plot)
 
-    # wyświetl nazwy funkcji ze słowem "test" w nazwie
+	# Show function names with test in its name
     apropos("test")
 
     # wyświetl nazwy funkcji ze zwrotem ’normality test’ w opisie
