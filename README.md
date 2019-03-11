@@ -271,6 +271,26 @@ Collection of R code snippets
     x['apple'] Element with name 'apple'
 
 
+# List
+
+
+## Create List
+    list(name=c("Steve","Harry"), surname="Toreno", age=25, married=T)
+
+
+## Acces elements
+    $name # "Steve" "Harry"
+    $surname # "Toreno"
+    $age # 25
+
+
+# Matrix
+
+
+## Create Matrix
+    matrix(0,2,4)
+
+
 # Math
     # Logical
     - x
@@ -282,7 +302,6 @@ Collection of R code snippets
     x %/% y
 
 
-
 ## Math functions
     # Natural log
     log(x)
@@ -290,11 +309,16 @@ Collection of R code snippets
     # Sum
     sum(x)
     
+    # Lagged differences, with lag indicating which lag to use
+    diff(x, lag=1)
+    
     # Exponential
     exp(x)
     
     # Mean
     mean(x)
+    # Trimmed mean, removing any missing values and # 5 percent of highest and lowest scores
+    mx <- mean(x, trim=.05, na.rm=TRUE) 
     
     # Largest element
     max(x)
@@ -305,8 +329,13 @@ Collection of R code snippets
     # Smallest element
     min(x)
     
-    # Percentage quantiles
-    quantile(x)
+    # Range
+    range(x)
+    
+    # Quantiles where x is the numeric vector whose quantiles are desired and probs is a numeric vector with probabilities in [0,1].
+    quantile(x, probs)
+    # 30th and 84th percentiles of x
+    y <- quantile(x, c(.3,.84)) 
     
     # Round to n decimal places
     round(x, n)
@@ -317,8 +346,11 @@ Collection of R code snippets
     # Round to n significant figures
     signif(x, n)
     
-    # The variance
+    # Variance
     var(x)
+    
+    # Median absolute deviation
+    mad(x)
     
     # Correlation
     cor(x, y)
@@ -506,9 +538,9 @@ The result will have mean=0 and sd=1.
 
 
 # Distributions
-All these functions can be used by replacing the letter r with d, p or q to
-get, respectively, the probability density (dfunc(x, ...)), the cumulative
-probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,...), with 0 < p < 1).
+All these functions can be used by replacing the letter r with d, p or q to  
+get, respectively, the probability density (dfunc(x, ...)), the cumulative  
+probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,...), with 0 < p < 1).  
 
 ## Gaussian (normal)
     # n random normal deviates with mean m and standard deviation sd. 
@@ -563,7 +595,11 @@ probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,...), wi
     
     
 ## Binomial
-    rbinom(n, size, prob)
+    # binomial distribution where size is the sample size and prob is the probability of a coin heads (pi)
+    # prob of 0 to 5 heads of fair coin out of 10 flips dbinom(0:5, 10, .5)
+    # prob of 5 or less heads of fair coin out of 10 flips pbinom(5, 10, .5) 
+    dbinom(x, size, prob)
+    
     
     
 ## Geometric
