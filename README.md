@@ -46,6 +46,11 @@ Collection of R code snippets
 
 
 ## Manage Objects
+    # Show imported names
+ Unless you specify check.names=FALSE, R will convert column names that are not valid variable names (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. by replacing spaces with dots.
+ 
+    names(data)
+
 	# List all the created objects in the environment
 	ls()
 	
@@ -86,6 +91,12 @@ Collection of R code snippets
 	paste(h, yourname)
 	# [1] "Hello Andrie"
 
+ 
+ # Regex (Match exact strings)
+
+    x <- c("apple", "banana", "pear")
+    str_extract(x, "an")
+    #> [1] NA   "an" NA
 
 
 # Vectors
@@ -238,12 +249,6 @@ The result will have mean=0 and sd=1.
 # Dataset Operations
 
 
-## Show imported names
-Unless you specify check.names=FALSE, R will convert column names that are not valid variable names (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. by replacing spaces with dots.
-
-    names(data)
-
-
 ## Read Tabular data with separated columns (commas or tabs)
 
 	read.table(file="myfile", sep="t", header=TRUE)
@@ -335,13 +340,23 @@ Unless you specify check.names=FALSE, R will convert column names that are not v
 # Plots
 
 
-## Basic Histogram
-    
+## Semilog plot (one log-scale axis)
+    x = 1:100
+    y = x^2
+    plot(x, y, log="y")
+
+
+## Basic Histogram     
+    data1 <- read.table ("DATA1.txt", header=TRUE)
     hist(data1$X)
   
   
+## XY Plot
+    data1 <- read.table ("DATA1.txt", header=TRUE)
+    plot(data1$X, data1$Y)
+  
+  
 ## Histogram and Frequency
-
     library(MASS)
     data(anorexia)
     attach(anorexia)
@@ -423,7 +438,7 @@ probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,...), wi
 
 
 
-### Statistics
+# Statistics
 if p-value is bigger than given α level of significance we fail to reject the null hypothesis (no difference was     detected)
 i.e:
 p-value = 0.588 > 0.05 = α
@@ -436,7 +451,6 @@ p-value = 0.588 > 0.05 = α
     
     # Paired t-test (x and y are releated)
     t.test (x ,y, paired = T, alternative = 'greater')
-
 
     # Perform a t-test for difference between means. 
     t.test(x, y)
@@ -452,17 +466,14 @@ p-value = 0.588 > 0.05 = α
     # Use help.search("test")
 
 
-# Plot
-## Semilog plot (one log-scale axis)
-    x = 1:100
-    y = x^2
-    plot(x,y, log="y")
+# Linear Model
 
 
-## Linear Model
-    X <- data1 $X
-    Y <- data1 $Y
-    lm(Y ~ X )
+## Create linear model
+    data1 <- read.table ("DATA1.txt", header=TRUE)
+    X <- data1$X
+    Y <- data1$Y
+    lm(Y~X)
 
     lm.linear <- lm ( Y ~ X)
     lm.linear
@@ -470,30 +481,68 @@ p-value = 0.588 > 0.05 = α
     summary(lm.linear)
 
 
-## Add plot with regression line
-Define particular width and height for plot
-
+## Create linear model and Add plot with regression line
+    # Load Dataset
+    data1 <- read.table ("DATA1.txt", header=TRUE)
+    X <- data1$X
+    Y <- data1$Y
+    
+    # Create linear model
+    lm(Y~X)
+    lm.linear <- lm ( Y ~ X)
+    lm.linear
+    
+    # Define particular width and height for plot
     dev.new(width=20, height=8)
 
-Make simple plot of X and Y
-    
+    # Make simple plot of X and Y
     plot(data1$X, data1$Y)
-Add regression line
-    
+
+    # Add regression line
     abline(lm.linear)
 
-levels of confidence
-
-    ***  0 < p < 0.001
-    **   0.001 < p < 0.01
-    *    0.01 < p < 0.05
+    # levels of confidence
+    # ***  0 < p < 0.001
+    # **   0.001 < p < 0.01
+    # *    0.01 < p < 0.05
  
  
-# Regex (Match exact strings)
+## Linear model residuals (Histogram reszt modelu)
+    # Load Dataset
+    data1 <- read.table ("DATA1.txt", header=TRUE)
+    X <- data1$X
+    Y <- data1$Y
+    
+    # Create linear model
+    lm(Y~X)
+    lm.linear <- lm ( Y ~ X)
+    lm.linear
 
-    x <- c("apple", "banana", "pear")
-    str_extract(x, "an")
-    #> [1] NA   "an" NA
+    residuals(lm.linear)
+    lm.linear.resids <- residuals(lm.linear)
+    hist(lm.linear.resids)
+
+
+## Fitted values
+Funkcja fitted zwraca jako wynik wartości dopasowane przez model -
+wartości Y które uzyskalibyśmy przy najlepiej dopasowanej prostej
+regresji, przy danych obserwacjach X
+    
+    # Load Dataset
+    data1 <- read.table ("DATA1.txt", header=TRUE)
+    X <- data1$X
+    Y <- data1$Y
+    
+    # Create linear model
+    lm(Y~X)
+    lm.linear <- lm ( Y ~ X)
+    lm.linear
+    
+    # Check value
+    fitted(lm.linear)
+
+    plot(X, Y)
+    lines(X, fitted(lm.linear))
 
 
 # Shiny
