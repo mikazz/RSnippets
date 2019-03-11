@@ -231,6 +231,18 @@ Collection of R code snippets
     x['apple'] Element with name 'apple'
 
 
+# Math
+    # Logical
+    - x
+
+    # Modulo
+    x %% y
+    
+    # 
+    x %/% y
+
+
+
 ## Math functions    
     # Natural log
     log(x)
@@ -273,7 +285,31 @@ Collection of R code snippets
     
     # The standard deviation
     sd(x)
+
+    # Absolute value
+    abs(x)
+
+    # Square root
+    sqrt(x)
+
+    # ceiling(3.475) is 4
+    ceiling(x)
+
+    # floor(3.475) is 3
+    floor(x)
+
+    # trunc(5.99) is 5
+    trunc(x)
     
+    #round(3.475, digits=2) is 3.48
+    round(x, digits=n)
+
+signif(x, digits=n) 	signif(3.475, digits=2) is 3.5
+cos(x), sin(x), tan(x) 	also acos(x), cosh(x), acosh(x), etc.
+log(x) 	natural logarithm
+log10(x) 	common logarithm
+exp(x) 	e^x
+
 
 # Libraries
 
