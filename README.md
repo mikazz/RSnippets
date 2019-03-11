@@ -53,6 +53,7 @@ Collection of R code snippets
     sin(pi/2) # [1] 1
 
     sin(pi/3)^2 + cos(pi/3)^2 #[1] 1
+    sin(pi/3)^2 + cos(pi/3)^2 #[1] 1
 
     > (3+7)^(4-2)
     [1] 100
@@ -62,8 +63,7 @@ Collection of R code snippets
     [1] 0.7853982
     > log(1024,2)
     [1] 10
-    > choose(6,2) # symbol Newtona, nie każdy kalkulator potrafi go wyliczyć
-    [1] 15
+
 
 
 # Program inside
@@ -181,7 +181,7 @@ Collection of R code snippets
     #> [1] NA   "an" NA
 
 
-# Vectors
+# Vector (1 dimension)
 
 
 ## Assign values to variables
@@ -284,25 +284,53 @@ Collection of R code snippets
     $age # 25
 
 
-# Matrix
+# Matrix (2 dimensions)
 
 
 ## Create Matrix
     matrix(0,2,4)
 
-
-# Math
-    # Logical
-    - x
-
-    # Modulo
-    x %% y
+# Array (3 dimensions)
     
-    # 
-    x %/% y
+    
+# Basic Arithmetic Operators
+
+    # y added to x
+    x+y
+    2 + 3 = 5
+    
+    # y subtracted from x
+    x–y
+    8 – 2 = 6
+    
+    # x multiplied by y
+    x*y
+    3 * 2 = 6
+
+    # x divided by y
+    x/y
+    10 / 5 = 2
+    
+    # x raised to the power y
+    x^y
+    2 ^ 5 = 32
+    
+    # remainder of x divided by y (x mod y)
+    x%%y
+    7 %% 3 = 1
+
+    # x divided by y but rounded down (integer divide)
+    x%/%y
+    7 %/% 3 = 2
+    
 
 
 ## Math functions
+    # Newton Symbol/Binomial coefficient
+    # Returns the number of possible combinations when drawing y elements at a time from x possibilities
+    # choose(6,2) is 15
+    choose(x, y)
+
     # Natural log
     log(x)
     
@@ -338,12 +366,16 @@ Collection of R code snippets
     y <- quantile(x, c(.3,.84)) 
     
     # Round to n decimal places
+    # round(123.456, digits = 2) # 123.46
+    # Round numbers to multiples of  10, 100, and so on
+    # round(-123.456, digits = -2) # -100
     round(x, n)
     
     # Rank of Vector elements
     rank(x)
     
     # Round to n significant figures
+    # signif(-123.456, digits = 4) # -123.5
     signif(x, n)
     
     # Variance
@@ -369,6 +401,9 @@ Collection of R code snippets
 
     # floor(3.475) is 3
     floor(x)
+    
+    # Returns the factorial of x (x!)
+    factorial(x)
 
     # trunc(5.99) is 5
     trunc(x)
@@ -376,11 +411,25 @@ Collection of R code snippets
     #round(3.475, digits=2) is 3.48
     round(x, digits=n)
 
-signif(x, digits=n)     signif(3.475, digits=2) is 3.5
-cos(x), sin(x), tan(x)  also acos(x), cosh(x), acosh(x), etc.
-log(x)  natural logarithm
-log10(x)    common logarithm
-exp(x)  e^x
+    # signif(3.475, digits=2) is 3.5
+    signif(x, digits=n)
+
+    # Trigonometry
+    # Calculate the cosine of an angle of 120 degrees
+    # cos(120 * pi / 180)
+    cos(x)
+    
+    sin(x)
+    tan(x)
+    acos(x)
+    cosh(x)
+    acosh(x)
+    
+    log(x)  natural logarithm
+
+    log10(x)    common logarithm
+
+    exp(x)  e^x
 
 
 # Libraries
