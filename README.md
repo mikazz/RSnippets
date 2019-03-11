@@ -47,8 +47,9 @@ Collection of R code snippets
 
 ## Manage Objects
     # Show imported names
- Unless you specify check.names=FALSE, R will convert column names that are not valid variable names (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. by replacing spaces with dots.
- 
+    # Unless you specify check.names=FALSE, R will convert column names that are not valid variable names 
+    # (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. 
+    # by replacing spaces with dots.
     names(data)
 
 	# List all the created objects in the environment
