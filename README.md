@@ -7,38 +7,38 @@ Collection of R code snippets
 
 ## If Statements
     if (i > 3){
-    	print(‘Yes’)
+        print(‘Yes’)
     } 
-	else {
-    	print(‘No’)
+    else {
+        print(‘No’)
     }
 
 
 ## While
     while (i < 5){
-		print(i)
-		i <- i + 1
+        print(i)
+        i <- i + 1
     }
 
 
 ## For loop
     for (i in 1:4){
-		j <- i + 10
-		print(j)
+        j <- i + 10
+        print(j)
     }
 
 
 ## Hello World from basic function
     sayHello <- function(){
-    	print('Hello World')
+        print('Hello World')
     }
     sayHello()
 
 
 ## Square function
     square <- function(x){
-    	squared <- x*x
-    	return(squared)
+        squared <- x*x
+        return(squared)
     }
 
 
@@ -76,7 +76,7 @@ Collection of R code snippets
     # Show use case example of plot()
     example(plot)
 
-	# Show function names with test in its name
+    # Show function names with test in its name
     apropos("test")
 
     # wyświetl nazwy funkcji ze zwrotem ’normality test’ w opisie
@@ -90,88 +90,88 @@ Collection of R code snippets
     # by replacing spaces with dots.
     names(data)
 
-	# List all the created objects in the environment
-	ls()
-	
-	# Delete created object
-	rm(z)
+    # List all the created objects in the environment
+    ls()
+    
+    # Delete created object
+    rm(z)
 
 
 ## Save Work
-	# Save individual variables
-	save()
-	
-	# Save file
-	save(yourname, file = "yourname.rda")
-	
-	# Retrieve saved data
-	load("yourname.rda")
-	
-	# Save the entire environment
-	save.image()
-	
-	# Save history of typed commands
-	savehistory(file = "Chapter3.Rhistory")
-	
+    # Save individual variables
+    save()
+    
+    # Save file
+    save(yourname, file = "yourname.rda")
+    
+    # Retrieve saved data
+    load("yourname.rda")
+    
+    # Save the entire environment
+    save.image()
+    
+    # Save history of typed commands
+    savehistory(file = "Chapter3.Rhistory")
+    
 
 ## Check the Default working directory (should be your user folder)
-	 getwd()
+     getwd()
 
 
 # Strings
 
 
 ## Concatenate multiple text elements. By default, paste() puts a space between the different elements
-	paste("Hello", "world!")
+    paste("Hello", "world!")
 
 
 ## Extract or replace substrings in a character vector.
-	substr(x, start=n1, stop=n2)
-	x <- "abcdef"
-	substr(x, 2, 4) is "bcd"
-	substr(x, 2, 4) <- "22222" is "a222ef"
+    substr(x, start=n1, stop=n2)
+    x <- "abcdef"
+    substr(x, 2, 4) is "bcd"
+    substr(x, 2, 4) <- "22222" is "a222ef"
 
 
 ## Search for pattern in x. If fixed =FALSE then pattern is a regular expression. If fixed=TRUE then pattern is a text string. Returns matching indices. 
-	# grep(pattern, x , ignore.case=FALSE, fixed=FALSE) 	
-	grep("A", c("b","A","c"), fixed=TRUE) # returns 2
+    # grep(pattern, x , ignore.case=FALSE, fixed=FALSE)     
+    grep("A", c("b","A","c"), fixed=TRUE) # returns 2
 
 
 ## Find pattern in x and replace with replacement text.
-	# If fixed=FALSE then pattern is a regular expression.
-	sub(pattern, replacement, x, ignore.case =FALSE, fixed=FALSE) 
-	
-	# If fixed = T then pattern is a text string.
-	sub("\\s",".","Hello There") returns "Hello.There"
+    # If fixed=FALSE then pattern is a regular expression.
+    sub(pattern, replacement, x, ignore.case =FALSE, fixed=FALSE) 
+    
+    # If fixed = T then pattern is a text string.
+    sub("\\s",".","Hello There") returns "Hello.There"
 
 
 ## Split the elements of character vector x at split.
-	# strsplit(x, split)
-	strsplit("abc", "") # returns 3 element vector "a","b","c"
+    # strsplit(x, split)
+    strsplit("abc", "") # returns 3 element vector "a","b","c"
 
 
 ## Concatenate strings after using sep string to seperate them.
-	# paste(..., sep="")
-	paste("x",1:3,sep="") # returns c("x1","x2" "x3")
-	paste("x",1:3,sep="M") # returns c("xM1","xM2" "xM3")
-	paste("Today is", date())
+    # paste(..., sep="")
+    paste("x",1:3,sep="") # returns c("x1","x2" "x3")
+    paste("x",1:3,sep="M") # returns c("xM1","xM2" "xM3")
+    paste("Today is", date())
 
 
 ## Uppercase
-	toupper(x)
+    toupper(x)
 
 
 ## Lowercase
-	tolower(x)
+    tolower(x)
 
 
 ## User input
-	h <- "Hello"
-	yourname <- readline("What is your name? ")
-	# What is your name? Andrie
-	
-	paste(h, yourname)
-	# [1] "Hello Andrie"
+    h <- "Hello"
+    yourname <- readline("What is your name? ")
+    # What is your name? Andrie
+    
+    paste(h, yourname)
+    # [1] "Hello Andrie"
 
  
 # Regex (Match exact strings)
@@ -190,17 +190,17 @@ Collection of R code snippets
     MyVar = value
     # Or
     value -> MyVar
-	
-	x <- 1:5 # 1 2 3 4 5
+    
+    x <- 1:5 # 1 2 3 4 5
 
 
 ## Add the value 2 to each element in the vector x:
-	x <- 1:5
-	x + 2 # 3 4 5 6 7
+    x <- 1:5
+    x + 2 # 3 4 5 6 7
 
 
 ## Join two vectors
-	x + 6:10 # 7 9 11 13 15
+    x + 6:10 # 7 9 11 13 15
 
 
 ## Join elements into a vector
@@ -209,7 +209,7 @@ Collection of R code snippets
 
 ## Create vector of integer sequence
     vector_var <- 2:6 
-	#[1] 2 3 4 5 6
+    #[1] 2 3 4 5 6
     
 
 ## Create vector of complex sequence
@@ -226,46 +226,46 @@ Collection of R code snippets
 
 ## Vector indexing / Selecting Vector Elements By Position
     # The fourth element
-	x[4]
+    x[4]
     
-	# All but the fourth
-	x[-4]
+    # All but the fourth
+    x[-4]
     
-	# Elements two to four
-	x[2:4]
+    # Elements two to four
+    x[2:4]
     
-	# All elements except two to four
-	x[-(2:4)]
-	
-	# First 5 elements
-	x[1:5]
-	
-	# Last 5 elements
-	x[(length(x)-5):length(x)]
+    # All elements except two to four
+    x[-(2:4)]
+    
+    # First 5 elements
+    x[1:5]
+    
+    # Last 5 elements
+    x[(length(x)-5):length(x)]
     
 
 ## Vector indexing / Selecting Vector Elements By Value
     # How many elements?
-	length(x)
-	
-	# Elements one and five
-	x[c(1, 5)]
+    length(x)
     
-	# Elements which are equal to 10
-	x[x == 10]
+    # Elements one and five
+    x[c(1, 5)]
     
-	# All elements less than zero
-	x[x < 0]
+    # Elements which are equal to 10
+    x[x == 10]
     
-	# Bigger than or less than values 
-	x[ x< -2 | x > 2]
-	
-	# Elements in the set 1, 2, 5
-	x[x %in%c(1, 2, 5)]
-	
-	# Which indices are largest 
-	which(x == max(x))
-	
+    # All elements less than zero
+    x[x < 0]
+    
+    # Bigger than or less than values 
+    x[ x< -2 | x > 2]
+    
+    # Elements in the set 1, 2, 5
+    x[x %in%c(1, 2, 5)]
+    
+    # Which indices are largest 
+    which(x == max(x))
+    
 
 ## Vector indexing / Selecting Vector Elements By  Named Vectors
     x['apple'] Element with name 'apple'
@@ -283,7 +283,7 @@ Collection of R code snippets
 
 
 
-## Math functions    
+## Math functions
     # Natural log
     log(x)
     
@@ -344,11 +344,11 @@ Collection of R code snippets
     #round(3.475, digits=2) is 3.48
     round(x, digits=n)
 
-signif(x, digits=n) 	signif(3.475, digits=2) is 3.5
-cos(x), sin(x), tan(x) 	also acos(x), cosh(x), acosh(x), etc.
-log(x) 	natural logarithm
-log10(x) 	common logarithm
-exp(x) 	e^x
+signif(x, digits=n)     signif(3.475, digits=2) is 3.5
+cos(x), sin(x), tan(x)  also acos(x), cosh(x), acosh(x), etc.
+log(x)  natural logarithm
+log10(x)    common logarithm
+exp(x)  e^x
 
 
 # Libraries
@@ -363,7 +363,7 @@ exp(x) 	e^x
     
     
 ## Install the package along with all the packages (dependencies) required
-	install.packages("Rcmdr", dependencies = TRUE)
+    install.packages("Rcmdr", dependencies = TRUE)
 
 
 ## Load the package into the session, making all its functions available to use. 
@@ -387,8 +387,8 @@ exp(x) 	e^x
     summary(data)
     # Or
     sapply(mydata, mean, na.rm=TRUE)
- 
- 
+
+
 ## Column normalization (z-transformation)
 The result will have mean=0 and sd=1.
     
@@ -399,37 +399,37 @@ The result will have mean=0 and sd=1.
 
 
 ## Load Data
-	# Read Tabular data with separated columns (commas or tabs)
-	read.table(file="myfile", sep="t", header=TRUE)
+    # Read Tabular data with separated columns (commas or tabs)
+    read.table(file="myfile", sep="t", header=TRUE)
 
-	# Configured read.table() with all the arguments preset to read CSV files
-	read.csv(file="myfile")
+    # Configured read.table() with all the arguments preset to read CSV files
+    read.csv(file="myfile")
 
     # Configured read.csv() configured for data with a comma as the decimal point and a semicolon as the separator
-	read.csv2(file=”myfile”, header=TRUE)
+    read.csv2(file=”myfile”, header=TRUE)
 
     # Read delimited files, with tabs as the default
-	read.delim(file=”myfile”, header=TRUE)
+    read.delim(file=”myfile”, header=TRUE)
 
-    # Allows finer control over the read process when data isn’t tabular	
-	scan("myfile", skip = 1, nmax=100)
+    # Allows finer control over the read process when data isn’t tabular    
+    scan("myfile", skip = 1, nmax=100)
 
-    # Reads text from a text file one line at a time	
-	readLines("myfile")
+    # Reads text from a text file one line at a time    
+    readLines("myfile")
 
     # Read a file with dates in fixed-width format (each column in the data has a fixed number of characters)
-	read.fwf("myfile", widths=c(1,2,3)
+    read.fwf("myfile", widths=c(1,2,3)
 
     # Reads SPSS data file
-	library("foreign")
-	read.spss("myfile")
+    library("foreign")
+    read.spss("myfile")
 
-    # Reads Stata binary file	
-	read.dta("myfile")
+    # Reads Stata binary file   
+    read.dta("myfile")
 
     # Reads SAS export file
-	read.export("myfile")
-	
+    read.export("myfile")
+    
     # Load dataset with different encoding (Handling polish encoding)
     fileEncoding='windows-1250'
     # Skip the first 1825 lines.
@@ -511,72 +511,87 @@ get, respectively, the probability density (dfunc(x, ...)), the cumulative
 probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,...), with 0 < p < 1).
 
 ## Gaussian (normal)
-	# n random normal deviates with mean m and standard deviation sd. 
-	rnorm(n, mean=0, sd=1)
+    # n random normal deviates with mean m and standard deviation sd. 
+    rnorm(n, mean=0, sd=1)
     
-	# Normal density function (by default m=0 sd=1)
-	dnorm(x)
+    # Normal density function (by default m=0 sd=1)
+    dnorm(x)
     
     # cumulative normal probability for q (area under the normal curve to the left of q)
     pnorm(1.96) is 0.975 
     pnorm(q)
 
-	# Normal quantile (value at the p percentile of normal distribution 
+    # Normal quantile (value at the p percentile of normal distribution 
     qnorm(.9) is 1.28 # 90th percentile
-	qnorm(p)
-	
-	
-    # Exponential
+    qnorm(p)
+    
+    
+## Exponential
     rexp(n, rate=1)
     
-    # Gamma
+    
+## Gamma
     rgamma(n, shape, scale=1)
 
-    #  Poisson
+    
+##  Poisson
     rpois(n, lambda)
 
-    # Weibull
+    
+## Weibull
     rweibull(n, shape, scale=1)
     
-    # Cauchy
+    
+## Cauchy
     rcauchy(n, location=0, scale=1)
 
-    # beta
+    
+## Beta
     rbeta(n, shape1, shape2)
     
-    # 'Student' (t)
+    
+## 'Student' (t)
     rt(n, df)
     
-    # Fisher–Snedecor (F) (χ2)
+    
+## Fisher–Snedecor (F) (χ2)
     rf(n, df1, df2)
     
-    # Pearson
+    
+## Pearson
     rchisq(n, df)
     
-    # binomial
+    
+## Binomial
     rbinom(n, size, prob)
     
-    # geometric
+    
+## Geometric
     rgeom(n, prob)
     
-    # hypergeometric
+    
+## Hypergeometric
     rhyper(nn, m, n, k)
     
-    # logistic
+    
+## Logistic
     rlogis(n, location=0, scale=1)
     
-    # lognormal
+    
+## Lognormal
     rlnorm(n, meanlog=0, sdlog=1)
     
-    # negative binomial
+    
+## Negative binomial
     rnbinom(n, size, prob)
     
-    # uniform
+    
+## Uniform
     runif(n, min=0, max=1)
     
-    # Wilcoxon’s statistics
+    
+## Wilcoxon’s statistics
     rwilcox(nn, m, n), rsignrank(nn, n)
-
 
 
 # Statistics
