@@ -232,20 +232,47 @@ Collection of R code snippets
 
 
 ## Math functions    
-    log(x) Natural log. 
-    sum(x) Sum.
-    exp(x) Exponential. 
-    mean(x) Mean.
-    max(x) Largest element. 
-    median(x) Median.
-    min(x) Smallest element. 
-    quantile(x) Percentage quantiles.
-    round(x, n) Round to n decimal places.
-    rank(x) Rank of elements.
-    signif(x, n) Round to n significant figures.
-    var(x) The variance.
-    cor(x, y) Correlation. 
-    sd(x) The standard deviation
+    # Natural log
+    log(x)
+    
+    # Sum
+    sum(x)
+    
+    # Exponential
+    exp(x)
+    
+    # Mean
+    mean(x)
+    
+    # Largest element
+    max(x)
+    
+    # Median
+    median(x)
+    
+    # Smallest element
+    min(x)
+    
+    # Percentage quantiles
+    quantile(x)
+    
+    # Round to n decimal places
+    round(x, n)
+    
+    # Rank of Vector elements
+    rank(x)
+    
+    # Round to n significant figures
+    signif(x, n)
+    
+    # The variance
+    var(x)
+    
+    # Correlation
+    cor(x, y)
+    
+    # The standard deviation
+    sd(x)
     
 
 # Libraries
