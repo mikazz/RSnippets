@@ -125,6 +125,46 @@ Collection of R code snippets
 	paste("Hello", "world!")
 
 
+## Extract or replace substrings in a character vector.
+	substr(x, start=n1, stop=n2)
+	x <- "abcdef"
+	substr(x, 2, 4) is "bcd"
+	substr(x, 2, 4) <- "22222" is "a222ef"
+
+
+## Search for pattern in x. If fixed =FALSE then pattern is a regular expression. If fixed=TRUE then pattern is a text string. Returns matching indices. 
+	# grep(pattern, x , ignore.case=FALSE, fixed=FALSE) 	
+	grep("A", c("b","A","c"), fixed=TRUE) # returns 2
+
+
+## Find pattern in x and replace with replacement text.
+	# If fixed=FALSE then pattern is a regular expression.
+	sub(pattern, replacement, x, ignore.case =FALSE, fixed=FALSE) 
+	
+	# If fixed = T then pattern is a text string.
+	sub("\\s",".","Hello There") returns "Hello.There"
+
+
+## Split the elements of character vector x at split.
+	# strsplit(x, split)
+	strsplit("abc", "") # returns 3 element vector "a","b","c"
+
+
+## Concatenate strings after using sep string to seperate them.
+	# paste(..., sep="")
+	paste("x",1:3,sep="") # returns c("x1","x2" "x3")
+	paste("x",1:3,sep="M") # returns c("xM1","xM2" "xM3")
+	paste("Today is", date())
+
+
+## Uppercase
+toupper(x)
+
+
+## Lowercase
+tolower(x)
+
+
 ## User input
 	h <- "Hello"
 	yourname <- readline("What is your name? ")
@@ -134,7 +174,7 @@ Collection of R code snippets
 	# [1] "Hello Andrie"
 
  
- # Regex (Match exact strings)
+# Regex (Match exact strings)
 
     x <- c("apple", "banana", "pear")
     str_extract(x, "an")
