@@ -158,11 +158,11 @@ Collection of R code snippets
 
 
 ## Uppercase
-toupper(x)
+	toupper(x)
 
 
 ## Lowercase
-tolower(x)
+	tolower(x)
 
 
 ## User input
@@ -505,18 +505,31 @@ The result will have mean=0 and sd=1.
     detach(anorexia)
 
 
-## Distributions
+# Distributions
 All these functions can be used by replacing the letter r with d, p or q to
 get, respectively, the probability density (dfunc(x, ...)), the cumulative
 probability density (pfunc(x, ...)), and the value of quantile (qfunc(p,...), with 0 < p < 1).
 
-    #  Gaussian (normal)
-    rnorm(n, mean=0, sd=1)
+## Gaussian (normal)
+	# n random normal deviates with mean m and standard deviation sd. 
+	rnorm(n, mean=0, sd=1)
     
-    #  exponential
+	# Normal density function (by default m=0 sd=1)
+	dnorm(x)
+    
+    # cumulative normal probability for q (area under the normal curve to the left of q)
+    pnorm(1.96) is 0.975 
+    pnorm(q)
+
+	# Normal quantile (value at the p percentile of normal distribution 
+    qnorm(.9) is 1.28 # 90th percentile
+	qnorm(p)
+	
+	
+    # Exponential
     rexp(n, rate=1)
     
-    # gamma
+    # Gamma
     rgamma(n, shape, scale=1)
 
     #  Poisson
