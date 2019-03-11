@@ -2,92 +2,180 @@
 Collection of R code snippets
 
 
-
-Dataset Operations
-Statistics
-Linear Model
-Regex
-
-
 # Basics
 
 
 ## If Statements
     if (i > 3){
-    print(‘Yes’)
-    } else {
-    print(‘No’)
+    	print(‘Yes’)
+    } 
+	else {
+    	print(‘No’)
     }
 
 
 ## While
     while (i < 5){
-    print(i)
-    i <- i + 1
+		print(i)
+		i <- i + 1
     }
 
 
 ## For loop
     for (i in 1:4){
-    j <- i + 10
-    print(j)
+		j <- i + 10
+		print(j)
     }
 
 
 ## Hello World from basic function
     sayHello <- function(){
-    print('Hello World')
+    	print('Hello World')
     }
     sayHello()
 
 
 ## Square function
     square <- function(x){
-    squared <- x*x
-    return(squared)
+    	squared <- x*x
+    	return(squared)
     }
-    
-    
+
+
+# Program inside
+
+
+## Manage Objects
+	# List all the created objects in the environment
+	ls()
+	
+	# Delete created object
+	rm(z)
+
+
+## Save Work
+	# Save individual variables
+	save()
+	
+	# Save file
+	save(yourname, file = "yourname.rda")
+	
+	# Retrieve saved data
+	load("yourname.rda")
+	
+	# Save the entire environment
+	save.image()
+	
+
+## Check the Default working directory (should be your user folder)
+	 getwd()
+
+
+# Strings
+
+
+## Concatenate multiple text elements. By default, paste() puts a space between the different elements
+	paste("Hello", "world!")
+
+
+## User input
+	h <- "Hello"
+	yourname <- readline("What is your name? ")
+	# What is your name? Andrie
+	
+	paste(h, yourname)
+	# [1] "Hello Andrie"
+
+
+
+# Vectors
+
+
 ## Assign values to variables
     MyVar <- value
     # Or
     MyVar = value
     # Or
     value -> MyVar
+	
+	x <- 1:5 # 1 2 3 4 5
 
 
-## Assign vectors
-    # Join elements into a vector
-    vector_var <- c(2, 4, 6) # 2 4 6
+## Add the value 2 to each element in the vector x:
+	x <- 1:5
+	x + 2 # 3 4 5 6 7
+
+
+## Join two vectors
+	x + 6:10 # 7 9 11 13 15
+
+
+## Join elements into a vector
+    vector_var <- c(2, 4, 6) #[1] 2 4 6
     
-    # An integer sequence
-    vector_var <- 2:6 # 2 3 4 5 6
+
+## Create vector of integer sequence
+    vector_var <- 2:6 
+	#[1] 2 3 4 5 6
     
-    # A complex sequence
+
+## Create vector of complex sequence
     vector_var <- seq(2, 3, by=0.5) # 2.0 2.5 3.0 
 
-    # Repeat a vector
+
+## Repeat a vector
     vector_var <- rep(1:2, times=3) # 1 2 1 2 1 2
 
-    # Repeat elements
+
+## Repeat elements
     vector_var <- rep(1:2, each=3) # 1 1 1 2 2 2
 
 
-## Vector indexing / Selecting Vector Elements
-    By Position
-    x[4] The fourth element.
-    x[-4] All but the fourth.
-    x[2:4] Elements two to four.
-    x[-(2:4)] All elements except two to four.
+## Vector indexing / Selecting Vector Elements By Position
+    # The fourth element
+	x[4]
     
-    By Value
-    x[c(1, 5)] Elements one and five.
-    x[x == 10] Elements which are equal to 10.
-    x[x < 0] All elements less than zero.
-    x[x %in%c(1, 2, 5)] Elements in the set 1, 2, 5.
+	# All but the fourth
+	x[-4]
     
-    Named Vectors
-    x[‘apple’] Element with name ‘apple’.
+	# Elements two to four
+	x[2:4]
+    
+	# All elements except two to four
+	x[-(2:4)]
+	
+	# First 5 elements
+	x[1:5]
+	
+	# Last 5 elements
+	x[(length(x)-5):length(x)]
+    
+
+## Vector indexing / Selecting Vector Elements By Value
+    # How many elements?
+	length(x)
+	
+	# Elements one and five
+	x[c(1, 5)]
+    
+	# Elements which are equal to 10
+	x[x == 10]
+    
+	# All elements less than zero
+	x[x < 0]
+    
+	# Bigger than or less than values 
+	x[ x< -2 | x > 2]
+	
+	# Elements in the set 1, 2, 5
+	x[x %in%c(1, 2, 5)]
+	
+	# Which indices are largest 
+	which(x == max(x))
+	
+
+## Vector indexing / Selecting Vector Elements By  Named Vectors
+    x['apple'] Element with name 'apple'
 
 
 ## Math functions    
@@ -243,6 +331,7 @@ Unless you specify check.names=FALSE, R will convert column names that are not v
         temp=read.table(files[n], header=T, sep=",")
     }
 
+
 # Plots
 
 
@@ -261,11 +350,11 @@ Unless you specify check.names=FALSE, R will convert column names that are not v
     par(mfrow=c(1,2), pty="s" )
     options(OutDec=",")
 
-    #Histogram
+    # Histogram
     hist(Prewt, breaks=nclass.FD(Prewt), main="", col="slategrey", xlab="Weight", ylab="Frequency")
     title("a)", font.main=1)
 
-    #Density function
+    # Density function
     hist(Prewt, freq=FALSE, breaks=nclass.FD(Prewt), main="", col="slategrey", xlab="Weight", ylab="Density")
     title("b)", font.main=1)
 
