@@ -42,7 +42,45 @@ Collection of R code snippets
     }
 
 
+# Basic Calculator
+
+    2+2
+
+    2^10 -1 # [1] 1023
+
+    1/5 # [1] 0.2
+
+    sin(pi/2) # [1] 1
+
+    sin(pi/3)^2 + cos(pi/3)^2 #[1] 1
+
+    > (3+7)^(4-2)
+    [1] 100
+    > atan2(1,1) # wywołanie funkcji arcus tangens, patrz tabela 1.1
+    [1] 0.7853982
+    > pi/4
+    [1] 0.7853982
+    > log(1024,2)
+    [1] 10
+    > choose(6,2) # symbol Newtona, nie każdy kalkulator potrafi go wyliczyć
+    [1] 15
+
+
 # Program inside
+
+
+## Help
+    # wyświetl pomoc dotyczącą funkcji plot()
+    ?plot
+
+    # wyświetl przykłady użycia funkcji plot()
+    example(plot)
+
+    # wyświetl nazwy funkcji ze słowem "test" w nazwie
+    apropos("test")
+
+    # wyświetl nazwy funkcji ze zwrotem ’normality test’ w opisie
+    help.search("normality test")
 
 
 ## Manage Objects
@@ -71,6 +109,9 @@ Collection of R code snippets
 	
 	# Save the entire environment
 	save.image()
+	
+	# Save history of typed commands
+	savehistory(file = "Chapter3.Rhistory")
 	
 
 ## Check the Default working directory (should be your user folder)
@@ -216,12 +257,16 @@ Collection of R code snippets
 
 ## Install library From R
     install.packages('dplyr')
+    
+    
+## Install the package along with all the packages (dependencies) required
+	install.packages("Rcmdr", dependencies = TRUE)
 
 
 ## Load the package into the session, making all its functions available to use. 
     library(dplyr)
 
-    # Use a particular function from a package.
+    # Use a particular function from a package (useful when there is collison in namespace)
     dplyr::select
 
     # Load a built-in dataset into the environment. 
