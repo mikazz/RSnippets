@@ -243,14 +243,16 @@ Collection of R code snippets
 # List
 
 
-## Create List
-    list(name=c("Steve","Harry"), surname="Toreno", age=25, married=T)
+## Create and Acces List elements
+    person = list(name=c("Steve","Harry"), surname="Toreno", age=25, married=T)
+
+    person$name # "Steve" "Harry"
+    person$surname # "Toreno"
+    person$age # 25
 
 
-## Acces elements
-    $name # "Steve" "Harry"
-    $surname # "Toreno"
-    $age # 25
+## Iterate over list
+    for(i in dataList){print(i)}
 
 
 # Matrix
@@ -302,6 +304,8 @@ Collection of R code snippets
         squared <- x*x
         return(squared)
     }
+    
+    square(4) # 16
 
 
 ## Apply multiple functions to a data frame 
