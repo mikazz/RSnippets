@@ -546,6 +546,28 @@ The result will have mean=0 and sd=1.
             qmethod = c("escape", "double"),
             fileEncoding = "windows-1250")
 
+## Generate random data CSV file
+    # Set the working directory
+    setwd("C:/!Migracja/R/SNIPPETS")
+
+    # Get wokirng directory
+    getwd()
+
+    gen_data <- function(N, K, scaling) {
+        alpha <- 2 * pi * (1:N) / K
+        sin_pi_K <- 2 * sin(pi / K)
+
+        X <- as.data.frame(matrix(data=rnorm(n=2*N), nrow=N, ncol=2) +
+                           scaling*matrix(data = c(cos(alpha), sin(alpha)),
+                                          nrow = N, ncol = 2) / sin_pi_K)
+        return(data.frame(x = X$V1, y = X$V2))
+    }
+
+    set.seed(1)
+    write.table(x = gen_data(200, 4, 5), file = "test.txt",
+                col.names = TRUE, row.names = FALSE,
+                sep = ",", dec = ".")
+
 
 # Plots
 
