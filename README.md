@@ -5,7 +5,7 @@ Collection of R code snippets
 # Basics
 
 
-## If Statements
+## IF
     if (i > 3){
         print(‘Yes’)
     } 
@@ -14,56 +14,25 @@ Collection of R code snippets
     }
 
 
-## While
+## WHILE
     while (i < 5){
         print(i)
         i <- i + 1
     }
 
 
-## For loop
+## FOR
     for (i in 1:4){
         j <- i + 10
         print(j)
     }
 
 
-## Hello World from basic function
+## HELLO WORLD
     sayHello <- function(){
         print('Hello World')
     }
     sayHello()
-
-
-## Square function
-    square <- function(x){
-        squared <- x*x
-        return(squared)
-    }
-
-
-# Basic Calculator
-
-    2+2
-
-    2^10 -1 # [1] 1023
-
-    1/5 # [1] 0.2
-
-    sin(pi/2) # [1] 1
-
-    sin(pi/3)^2 + cos(pi/3)^2 #[1] 1
-    sin(pi/3)^2 + cos(pi/3)^2 #[1] 1
-
-    > (3+7)^(4-2)
-    [1] 100
-    > atan2(1,1) # wywołanie funkcji arcus tangens, patrz tabela 1.1
-    [1] 0.7853982
-    > pi/4
-    [1] 0.7853982
-    > log(1024,2)
-    [1] 10
-
 
 
 # Program inside
@@ -157,11 +126,11 @@ Collection of R code snippets
     paste("Today is", date())
 
 
-## Uppercase
+## Format String
+    # Uppercase
     toupper(x)
 
-
-## Lowercase
+    # Lowercase
     tolower(x)
 
 
@@ -181,7 +150,7 @@ Collection of R code snippets
     #> [1] NA   "an" NA
 
 
-# Vector (1 dimension)
+# Vector
 
 
 ## Assign values to variables
@@ -205,12 +174,12 @@ Collection of R code snippets
 
 ## Join elements into a vector
     vector_var <- c(2, 4, 6) #[1] 2 4 6
-    
+
 
 ## Create vector of integer sequence
     vector_var <- 2:6 
     #[1] 2 3 4 5 6
-    
+
 
 ## Create vector of complex sequence
     vector_var <- seq(2, 3, by=0.5) # 2.0 2.5 3.0 
@@ -284,15 +253,15 @@ Collection of R code snippets
     $age # 25
 
 
-# Matrix (2 dimensions)
+# Matrix
 
 
 ## Create Matrix
     matrix(0,2,4)
 
 # Array (3 dimensions)
-    
-    
+
+
 # Basic Arithmetic Operators
 
     # y added to x
@@ -322,10 +291,71 @@ Collection of R code snippets
     # x divided by y but rounded down (integer divide)
     x%/%y
     7 %/% 3 = 2
-    
 
 
-## Math functions
+# Functions
+
+
+## Function with basic argument
+    # Square function
+    square <- function(x){
+        squared <- x*x
+        return(squared)
+    }
+
+
+## Apply multiple functions to a data frame 
+    multi.fun <- function(x) {
+          c(min = min(x), mean = mean(x), max = max(x))
+    }
+
+    # Apply function on builtin dataframe cars
+    sapply(cars, multi.fun)
+
+
+## Function with multiple functions as arguments
+    multi.sapply <- function(...) {
+          # extract function arguments as list
+          arglist <- match.call(expand.dots = FALSE)$... 
+          
+          # deparses the expressions defining
+          # arguments as given in multi.apply call
+          var.names <- sapply(arglist, deparse)
+          
+          # if any argument was given name then its name is nonempty
+          # if no argument names were given then has.name is NULL
+          has.name <- (names(arglist) != "")
+          
+          # for all arguments that had name substitue deparsed
+          # expression by given name
+          var.names[has.name] <- names(arglist)[has.name]
+          
+          # now evaluate the expressions given in arguments
+          # go two generations back as we apply eval.parent
+          # witinh lapply function
+          arglist <- lapply(arglist, eval.parent, n = 2)
+          
+          # first argument contains data set
+          x <- arglist[[1]]
+          
+          # and here we remove it from the list
+          arglist[[1]] <- NULL
+          
+          # we use sapply twice - outer traverses functions and inner data set
+          # because x is a defined argument name in sapply definition
+          # we have to reorder arguments in function (FUN, x)
+          result <- sapply(arglist, function (FUN, x) sapply(x, FUN), x)
+          
+          # in defining column names
+          # we remove first element as it was name of data set argument
+          colnames(result) <- var.names[-1]
+          return(result)
+    }
+    # Apply function on builtin dataframe cars
+    multi.sapply(cars, min, mean, max)
+
+
+# Math
     # Newton Symbol/Binomial coefficient
     # Returns the number of possible combinations when drawing y elements at a time from x possibilities
     #  n! / ( k! (n - k)! )
@@ -421,9 +451,13 @@ Collection of R code snippets
     cos(x)
     
     sin(x)
+    
     tan(x)
+    
     acos(x)
+    
     cosh(x)
+    
     acosh(x)
     
     log(x)  natural logarithm
@@ -809,7 +843,9 @@ regresji, przy danych obserwacjach X
     lines(X, fitted(lm.linear))
 
 
-# Shiny
+# shiny package
+
+
 Build interactive web apps
 
     #SERVER
@@ -878,27 +914,30 @@ Build interactive web apps
       )
     ))
 
-# String manipulation with stringr
 
-The stringr package provides a set of internally consistent tools for working with character strings, 
-i.e. sequences of characters surrounded by quotation marks.
+# stringr package - string manipulation
+
+
+The stringr package provides a set of  
+internally consistent tools for working with character strings,  
+i.e. sequences of characters surrounded by quotation marks.  
 
 ## Detect the presence of a pattern match in a string.
-# str_detect(string, pattern) 
-str_detect(fruit, "a")
+    # str_detect(string, pattern) 
+    str_detect(fruit, "a")
 
 
 ## Find the indexes of strings that contain a pattern match.
-#str_which(string, pattern) 
-str_which(fruit, "a")
+    #str_which(string, pattern) 
+    str_which(fruit, "a")
 
 
 ## Count the number of matches in a string.
-#str_count(string, pattern) 
-str_count(fruit, "a")
+    #str_count(string, pattern) 
+    str_count(fruit, "a")
 
 
 ## Locate the positions of pattern matches in a string. Also str_locate_all.
-#str_locate(string, pattern)
-str_locate(fruit, "a")
+    #str_locate(string, pattern)
+    str_locate(fruit, "a")
 
