@@ -328,6 +328,7 @@ Collection of R code snippets
 ## Math functions
     # Newton Symbol/Binomial coefficient
     # Returns the number of possible combinations when drawing y elements at a time from x possibilities
+    #  n! / ( k! (n - k)! )
     # choose(6,2) is 15
     choose(x, y)
 
@@ -855,4 +856,27 @@ Build interactive web apps
       )
     ))
 
+# String manipulation with stringr
+
+The stringr package provides a set of internally consistent tools for working with character strings, 
+i.e. sequences of characters surrounded by quotation marks.
+
+## Detect the presence of a pattern match in a string.
+# str_detect(string, pattern) 
+str_detect(fruit, "a")
+
+
+## Find the indexes of strings that contain a pattern match.
+#str_which(string, pattern) 
+str_which(fruit, "a")
+
+
+## Count the number of matches in a string.
+#str_count(string, pattern) 
+str_count(fruit, "a")
+
+
+## Locate the positions of pattern matches in a string. Also str_locate_all.
+#str_locate(string, pattern)
+str_locate(fruit, "a")
 
