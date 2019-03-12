@@ -7,10 +7,10 @@ Collection of R code snippets
 
 ## IF
     if (i > 3){
-        print(‘Yes’)
+        print("Yes")
     } 
     else {
-        print(‘No’)
+        print("No")
     }
 
 
@@ -48,7 +48,7 @@ Collection of R code snippets
     # Show function names with test in its name
     apropos("test")
 
-    # wyświetl nazwy funkcji ze zwrotem ’normality test’ w opisie
+    # Show function names with 'normality test' text in description
     help.search("normality test")
 
 
@@ -605,6 +605,22 @@ The result will have mean=0 and sd=1.
     write.table(x = gen_data(200, 4, 5), file = "test.txt",
                 col.names = TRUE, row.names = FALSE,
                 sep = ",", dec = ".")
+
+
+# Data Cleanup
+
+
+## Replace data frame column values yes/no to 1/0
+    data$x <- ifelse(data$x=='yes', 1,0) 
+
+
+## Replace data frame column values 1/0 to TRUE/FALSE
+    data$x <- as.logical(as.integer(data$x))
+
+
+## Convert to factor
+    directions <- c("North", "East", "South", "South")
+    directions.factor <- factor(directions)
 
 
 # Plots
