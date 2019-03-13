@@ -81,10 +81,42 @@ Collection of R code snippets
     
     # Save history of typed commands
     savehistory(file = "Chapter3.Rhistory")
-    
 
-## Check the Default working directory (should be your user folder)
-     getwd()
+
+## Working Directory 
+    # Check working directory (by default should be your user folder)
+    getwd()
+    
+    # Set working directory
+    setwd()
+
+
+## Files
+    # Construct the universal path to a file from components in a platform-independent way
+    file.path("F:", "git", "main", "data", "README.md" )
+    # "F:/git/main/data/README.md"
+
+    # Lists files in a directory
+    list.files()
+
+    # Lists subdirectories of a directory
+    list.dirs()
+
+    # Tests whether a specific file exists in a location.
+    file.exists()
+    
+    # Creates a file
+    file.create()
+
+    # Deletes files (and directories in Unix operating systems)
+    file.remove()
+
+    # Returns a name for a temporary file. If you create a file for example, with file.create() or write.
+    # table() using this returned name R creates a file in a temporary folder
+    tempfile()
+
+    # Returns the file path of a temporary folder on your file system
+    tempdir()
 
 
 # Strings
@@ -261,6 +293,12 @@ Collection of R code snippets
 ## Create Matrix
     matrix(0,2,4)
 
+
+## Add names to columns
+    counts <- matrix(c(3, 2, 4, 6, 5, 1, 8, 6, 1), ncol = 3)
+    colnames(counts) <- c("sparrow", "dove", "crow")
+
+
 # Array (3 dimensions)
 
 
@@ -357,6 +395,25 @@ Collection of R code snippets
     }
     # Apply function on builtin dataframe cars
     multi.sapply(cars, min, mean, max)
+
+
+## Creating errors
+    logitpercent <- function(x){
+    if( any(x < 0 | x > 1) ) stop("x not between 0 and 1")
+    log(x / (1 - x) )
+    }
+    
+    logit(c("50%", "150%")) # Error in logit(as.numeric(x)/100) : x not between 0 and 1
+
+
+## Creating warnings
+    logitpercent <- function(x){
+    x <- ifelse(x < 0 | x > 1, NA, x )
+    if( any(is.na(x)) ) warning("x not between 0 and 1")
+    log(x / (1 - x) )
+    }
+    
+    logitpercent(c("50%", "150%")) # Warning message: In logit(as.numeric(x)/100) : x not between 0 and 1
 
 
 # Math
@@ -520,21 +577,22 @@ The result will have mean=0 and sd=1.
 
 ## Load Data
     # Read Tabular data with separated columns (commas or tabs)
+    # To import data, keeping the strings as strings, pass the argument stringsAsFactors = FALSE
     read.table(file="myfile", sep="t", header=TRUE)
 
     # Configured read.table() with all the arguments preset to read CSV files
     read.csv(file="myfile")
 
-    # Configured read.csv() configured for data with a comma as the decimal point and a semicolon as the separator
-    read.csv2(file=”myfile”, header=TRUE)
+    # Configured read.csv() for data with a comma as the decimal point and a semicolon as the separator
+    read.csv2(file="myfile", header=TRUE)
 
     # Read delimited files, with tabs as the default
-    read.delim(file=”myfile”, header=TRUE)
+    read.delim(file="myfile", header=TRUE)
 
-    # Allows finer control over the read process when data isn’t tabular    
+    # Allows finer control over the read process when data isn’t tabular
     scan("myfile", skip = 1, nmax=100)
 
-    # Reads text from a text file one line at a time    
+    # Reads text from a text file one line at a time
     readLines("myfile")
 
     # Read a file with dates in fixed-width format (each column in the data has a fixed number of characters)
@@ -544,21 +602,27 @@ The result will have mean=0 and sd=1.
     library("foreign")
     read.spss("myfile")
 
-    # Reads Stata binary file   
+    # Reads Stata binary file
+    library("foreign")
     read.dta("myfile")
 
     # Reads SAS export file
+    library("foreign")
     read.export("myfile")
     
     # Load dataset with different encoding (Handling polish encoding)
     fileEncoding='windows-1250'
-    # Skip the first 1825 lines.
+    # Skip the first 1825 lines
     skip=1825
     data = read.table('data.csv', header=T, sep=",")
 
 
-## Load several files
+## Write Data
+    # Write tabular data
+    write.table(head(iris), file = "clipboard", sep = "\t", row.names = FALSE)
 
+
+## Load several files
     # Get all files in folder that match the pattern *.csv
     files<-list.files(pattern="*.csv")
     
@@ -584,11 +648,12 @@ The result will have mean=0 and sd=1.
             qmethod = c("escape", "double"),
             fileEncoding = "windows-1250")
 
+
 ## Generate random data CSV file
     # Set the working directory
     setwd("C:/!Migracja/R/SNIPPETS")
 
-    # Get wokirng directory
+    # Check working directory
     getwd()
 
     gen_data <- function(N, K, scaling) {
@@ -607,7 +672,22 @@ The result will have mean=0 and sd=1.
                 sep = ",", dec = ".")
 
 
+## Apply function on rows / columns with apply
+    counts <- matrix(c(3, 2, 4, 6, 5, 1, 8, 6, 1), ncol = 3)
+    colnames(counts) <- c("sparrow", "dove", "crow")
+    # 2 is The dimension or index over which the function has to be applied:
+    # The number 1 means row‐wise, and the number 2 means column‐wise.
+    # Here, we apply the function over the columns. In the case of moredimensional
+    # arrays, this index can be larger than 2.
+    apply(counts, 2, max)
+    apply(counts, 2, min)
+
+
 # Data Cleanup
+
+
+## Show information about dataset
+    str(cars)
 
 
 ## Replace data frame column values yes/no to 1/0
