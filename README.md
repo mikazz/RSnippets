@@ -690,12 +690,16 @@ The result will have mean=0 and sd=1.
     str(cars)
 
 
-## Replace data frame column values yes/no to 1/0
+##  Convert yes/no to 1/0 (Replace data frame column values)
     data$x <- ifelse(data$x=='yes', 1,0) 
 
 
-## Replace data frame column values 1/0 to TRUE/FALSE
+## Convert numerical values 1/0 to TRUE/FALSE
     data$x <- as.logical(as.integer(data$x))
+
+
+## Convert factor to numerical integer
+    dataset$x <- as.integer(as.factor(dataset$x))
 
 
 ## Convert to factor
@@ -703,7 +707,40 @@ The result will have mean=0 and sd=1.
     directions.factor <- factor(directions)
 
 
+## Determine the number of NA values in a column (Sum NA Values)
+    # Count NA values in column
+    sum(is.na(dataset$col))
+
+    # Count NA values in dataframe
+    sum(is.na(dataset))
+
+    # Count NA for each column
+    na_count <-sapply(dataset, function(y) sum(length(which(is.na(y)))))
+    na_count <- data.frame(na_count)
+
+
+## Divide into groups (Group numerical objects into buckets or bins)
+    # Remove NA values
+    missing.age <- is.na(dataset$age)
+    dataset <- dataset[!missing.age,]
+    
+    # Next we will name our age groups (or "bins" or "buckets") 0-4, 5-9, 10-14 and so on.
+    labs <- c(paste(seq(0, 95, by = 5), seq(0 + 5 - 1, 100 - 1, by = 5), sep = "-"), paste(100, "+", sep = ""))
+
+    # Convert factor to numerical
+    dataset$age <- as.integer(as.factor(dataset$age))
+
+    # To add the ages to age groups, we create a new column agegroup and use the cut function to 
+    # break age into groups with the labels we defined in the previous step.
+    dataset$agegroup <- cut(dataset$age, breaks = c(seq(0, 100, by = 5), Inf), labels = labs, right = FALSE)
+    # new AgeGroup column shown alongside the Age data.
+    head(dataset[c("age", "agegroup")], 15)
+
+
 ## Remove columns
+    # Remove column by name
+    dataset$x <- NULL
+
     # Remove column by index (second column)
     data[2] <- NULL
     
