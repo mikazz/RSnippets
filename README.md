@@ -39,31 +39,35 @@ Collection of R code snippets
 
 
 ## Help
-    # Show help about function plot()
-    ?plot
+```r
+# Show help about function plot()
+?plot
 
-    # Show use case example of plot()
-    example(plot)
+# Show use case example of plot()
+example(plot)
 
-    # Show function names with test in its name
-    apropos("test")
+# Show function names with test in its name
+apropos("test")
 
-    # Show function names with 'normality test' text in description
-    help.search("normality test")
+# Show function names with 'normality test' text in description
+help.search("normality test")
+```
 
 
 ## Manage Objects
-    # Show imported names
-    # Unless you specify check.names=FALSE, R will convert column names that are not valid variable names 
-    # (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. 
-    # by replacing spaces with dots.
-    names(data)
+```r
+# Show imported names
+# Unless you specify check.names=FALSE, R will convert column names that are not valid variable names 
+# (e.g. contain spaces or special characters or start with numbers) into valid variable names, e.g. 
+# by replacing spaces with dots.
+names(data)
 
-    # List all the created objects in the environment
-    ls()
-    
-    # Delete created object
-    rm(z)
+# List all the created objects in the environment
+ls()
+
+# Delete created object
+rm(z)
+```
 
 
 ## Save Work
