@@ -71,20 +71,22 @@ rm(z)
 
 
 ## Save Work
-    # Save individual variables
-    save()
-    
-    # Save file
-    save(yourname, file = "yourname.rda")
-    
-    # Retrieve saved data
-    load("yourname.rda")
-    
-    # Save the entire environment
-    save.image()
-    
-    # Save history of typed commands
-    savehistory(file = "Chapter3.Rhistory")
+```r
+# Save individual variables
+save()
+
+# Save file
+save(yourname, file = "yourname.rda")
+
+# Retrieve saved data
+load("yourname.rda")
+
+# Save the entire environment
+save.image()
+
+# Save history of typed commands
+savehistory(file = "Chapter3.Rhistory")
+```
 
 
 ## Working Directory 
@@ -350,54 +352,57 @@ rm(z)
     square(4) # 16
 
 
-## Apply multiple functions to a data frame 
-    multi.fun <- function(x) {
-          c(min = min(x), mean = mean(x), max = max(x))
-    }
+## Apply multiple functions to a data frame
+```r
+multi.fun <- function(x) {
+      c(min = min(x), mean = mean(x), max = max(x))
+}
 
-    # Apply function on builtin dataframe cars
-    sapply(cars, multi.fun)
+# Apply function on builtin dataframe cars
+sapply(cars, multi.fun)
+```
 
 
 ## Function with multiple functions as arguments
 ```r
 multi.sapply <- function(...) {
-      # extract function arguments as list
-      arglist <- match.call(expand.dots = FALSE)$... 
-      
-      # deparses the expressions defining
-      # arguments as given in multi.apply call
-      var.names <- sapply(arglist, deparse)
-      
-      # if any argument was given name then its name is nonempty
-      # if no argument names were given then has.name is NULL
-      has.name <- (names(arglist) != "")
-      
-      # for all arguments that had name substitue deparsed
-      # expression by given name
-      var.names[has.name] <- names(arglist)[has.name]
-      
-      # now evaluate the expressions given in arguments
-      # go two generations back as we apply eval.parent
-      # witinh lapply function
-      arglist <- lapply(arglist, eval.parent, n = 2)
-      
-      # first argument contains data set
-      x <- arglist[[1]]
-      
-      # and here we remove it from the list
-      arglist[[1]] <- NULL
-      
-      # we use sapply twice - outer traverses functions and inner data set
-      # because x is a defined argument name in sapply definition
-      # we have to reorder arguments in function (FUN, x)
-      result <- sapply(arglist, function (FUN, x) sapply(x, FUN), x)
-      
-      # in defining column names
-      # we remove first element as it was name of data set argument
-      colnames(result) <- var.names[-1]
-      return(result)
+    # extract function arguments as list
+    arglist <- match.call(expand.dots = FALSE)$... 
+
+    # deparses the expressions defining
+    # arguments as given in multi.apply call
+    var.names <- sapply(arglist, deparse)
+
+    # if any argument was given name then its name is nonempty
+    # if no argument names were given then has.name is NULL
+    has.name <- (names(arglist) != "")
+
+    # for all arguments that had name substitue deparsed
+    # expression by given name
+    var.names[has.name] <- names(arglist)[has.name]
+
+    # now evaluate the expressions given in arguments
+    # go two generations back as we apply eval.parent
+    # witinh lapply function
+    arglist <- lapply(arglist, eval.parent, n = 2)
+
+    # first argument contains data set
+    x <- arglist[[1]]
+
+    # and here we remove it from the list
+    arglist[[1]] <- NULL
+
+    # we use sapply twice - outer traverses functions and inner data set
+    # because x is a defined argument name in sapply definition
+    # we have to reorder arguments in function (FUN, x)
+    result <- sapply(arglist, function (FUN, x) sapply(x, FUN), x)
+
+    # in defining column names
+    # we remove first element as it was name of data set argument
+    colnames(result) <- var.names[-1]
+    return(result)
 }
+
 # Apply function on builtin dataframe cars
 multi.sapply(cars, min, mean, max)
 ```
