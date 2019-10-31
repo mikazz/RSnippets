@@ -360,54 +360,58 @@ rm(z)
 
 
 ## Function with multiple functions as arguments
-    multi.sapply <- function(...) {
-          # extract function arguments as list
-          arglist <- match.call(expand.dots = FALSE)$... 
-          
-          # deparses the expressions defining
-          # arguments as given in multi.apply call
-          var.names <- sapply(arglist, deparse)
-          
-          # if any argument was given name then its name is nonempty
-          # if no argument names were given then has.name is NULL
-          has.name <- (names(arglist) != "")
-          
-          # for all arguments that had name substitue deparsed
-          # expression by given name
-          var.names[has.name] <- names(arglist)[has.name]
-          
-          # now evaluate the expressions given in arguments
-          # go two generations back as we apply eval.parent
-          # witinh lapply function
-          arglist <- lapply(arglist, eval.parent, n = 2)
-          
-          # first argument contains data set
-          x <- arglist[[1]]
-          
-          # and here we remove it from the list
-          arglist[[1]] <- NULL
-          
-          # we use sapply twice - outer traverses functions and inner data set
-          # because x is a defined argument name in sapply definition
-          # we have to reorder arguments in function (FUN, x)
-          result <- sapply(arglist, function (FUN, x) sapply(x, FUN), x)
-          
-          # in defining column names
-          # we remove first element as it was name of data set argument
-          colnames(result) <- var.names[-1]
-          return(result)
-    }
-    # Apply function on builtin dataframe cars
-    multi.sapply(cars, min, mean, max)
+```r
+multi.sapply <- function(...) {
+      # extract function arguments as list
+      arglist <- match.call(expand.dots = FALSE)$... 
+      
+      # deparses the expressions defining
+      # arguments as given in multi.apply call
+      var.names <- sapply(arglist, deparse)
+      
+      # if any argument was given name then its name is nonempty
+      # if no argument names were given then has.name is NULL
+      has.name <- (names(arglist) != "")
+      
+      # for all arguments that had name substitue deparsed
+      # expression by given name
+      var.names[has.name] <- names(arglist)[has.name]
+      
+      # now evaluate the expressions given in arguments
+      # go two generations back as we apply eval.parent
+      # witinh lapply function
+      arglist <- lapply(arglist, eval.parent, n = 2)
+      
+      # first argument contains data set
+      x <- arglist[[1]]
+      
+      # and here we remove it from the list
+      arglist[[1]] <- NULL
+      
+      # we use sapply twice - outer traverses functions and inner data set
+      # because x is a defined argument name in sapply definition
+      # we have to reorder arguments in function (FUN, x)
+      result <- sapply(arglist, function (FUN, x) sapply(x, FUN), x)
+      
+      # in defining column names
+      # we remove first element as it was name of data set argument
+      colnames(result) <- var.names[-1]
+      return(result)
+}
+# Apply function on builtin dataframe cars
+multi.sapply(cars, min, mean, max)
+```
 
 
 ## Creating errors
-    logitpercent <- function(x){
-    if( any(x < 0 | x > 1) ) stop("x not between 0 and 1")
-    log(x / (1 - x) )
-    }
-    
-    logit(c("50%", "150%")) # Error in logit(as.numeric(x)/100) : x not between 0 and 1
+```r
+logitpercent <- function(x){
+if( any(x < 0 | x > 1) ) stop("x not between 0 and 1")
+log(x / (1 - x) )
+}
+
+logit(c("50%", "150%")) # Error in logit(as.numeric(x)/100) : x not between 0 and 1
+```
 
 
 ## Creating warnings
@@ -608,45 +612,47 @@ The result will have mean=0 and sd=1.
 
 
 ## Load Data
-    # Read Tabular data with separated columns (commas or tabs)
-    # To import data, keeping the strings as strings, pass the argument stringsAsFactors = FALSE
-    read.table(file="myfile", sep="t", header=TRUE)
+```r
+# Read Tabular data with separated columns (commas or tabs)
+# To import data, keeping the strings as strings, pass the argument stringsAsFactors = FALSE
+read.table(file="myfile", sep="t", header=TRUE)
 
-    # Configured read.table() with all the arguments preset to read CSV files
-    read.csv(file="myfile")
+# Configured read.table() with all the arguments preset to read CSV files
+read.csv(file="myfile")
 
-    # Configured read.csv() for data with a comma as the decimal point and a semicolon as the separator
-    read.csv2(file="myfile", header=TRUE)
+# Configured read.csv() for data with a comma as the decimal point and a semicolon as the separator
+read.csv2(file="myfile", header=TRUE)
 
-    # Read delimited files, with tabs as the default
-    read.delim(file="myfile", header=TRUE)
+# Read delimited files, with tabs as the default
+read.delim(file="myfile", header=TRUE)
 
-    # Allows finer control over the read process when data isn’t tabular
-    scan("myfile", skip = 1, nmax=100)
+# Allows finer control over the read process when data isn’t tabular
+scan("myfile", skip = 1, nmax=100)
 
-    # Reads text from a text file one line at a time
-    readLines("myfile")
+# Reads text from a text file one line at a time
+readLines("myfile")
 
-    # Read a file with dates in fixed-width format (each column in the data has a fixed number of characters)
-    read.fwf("myfile", widths=c(1,2,3)
+# Read a file with dates in fixed-width format (each column in the data has a fixed number of characters)
+read.fwf("myfile", widths=c(1,2,3)
 
-    # Reads SPSS data file
-    library("foreign")
-    read.spss("myfile")
+# Reads SPSS data file
+library("foreign")
+read.spss("myfile")
 
-    # Reads Stata binary file
-    library("foreign")
-    read.dta("myfile")
+# Reads Stata binary file
+library("foreign")
+read.dta("myfile")
 
-    # Reads SAS export file
-    library("foreign")
-    read.export("myfile")
-    
-    # Load dataset with different encoding (Handling polish encoding)
-    fileEncoding='windows-1250'
-    # Skip the first 1825 lines
-    skip=1825
-    data = read.table('data.csv', header=T, sep=",")
+# Reads SAS export file
+library("foreign")
+read.export("myfile")
+
+# Load dataset with different encoding (Handling polish encoding)
+fileEncoding='windows-1250'
+# Skip the first 1825 lines
+skip=1825
+data = read.table('data.csv', header=T, sep=",")
+```
 
 
 ## Write Data
@@ -655,143 +661,182 @@ The result will have mean=0 and sd=1.
 
 
 ## Load several files
-    # Get all files in folder that match the pattern *.csv
-    files<-list.files(pattern="*.csv")
-    
-    # Load all files
-    print("Loading files...")
-    for(n in 1:length(files)){
-        # Import the file and sort the headers
-        print(files[n])
-        temp=read.table(files[n], header=T, sep=",")
-    }
+```r
+# Get all files in folder that match the pattern *.csv
+files<-list.files(pattern="*.csv")
+
+# Load all files
+print("Loading files...")
+for(n in 1:length(files)){
+    # Import the file and sort the headers
+    print(files[n])
+    temp=read.table(files[n], header=T, sep=",")
+}
+```
 
 
-## Save File 
-    # Prevent row names to be written to file
-    row.names=FALSE
-    # Save csv
-    write.table(data, file = "filename", append = FALSE, quote = TRUE, sep = ",",
-            eol = "\n", 
-            na = "NA", 
-            dec = ".", 
-            row.names = FALSE,
-            col.names = TRUE, 
-            qmethod = c("escape", "double"),
-            fileEncoding = "windows-1250")
+## Save File
+```r
+# Prevent row names to be written to file
+row.names=FALSE
+# Save csv
+write.table(data, file = "filename", append = FALSE, quote = TRUE, sep = ",",
+        eol = "\n", 
+        na = "NA", 
+        dec = ".", 
+        row.names = FALSE,
+        col.names = TRUE, 
+        qmethod = c("escape", "double"),
+        fileEncoding = "windows-1250")
+```
 
 
 ## Generate random data CSV file
-    # Set the working directory
-    setwd("C:/!Migracja/R/SNIPPETS")
+```r
+# Set the working directory
+setwd("C:/!Migracja/R/SNIPPETS")
 
-    # Check working directory
-    getwd()
+# Check working directory
+getwd()
 
-    gen_data <- function(N, K, scaling) {
-        alpha <- 2 * pi * (1:N) / K
-        sin_pi_K <- 2 * sin(pi / K)
+gen_data <- function(N, K, scaling) {
+    alpha <- 2 * pi * (1:N) / K
+    sin_pi_K <- 2 * sin(pi / K)
 
-        X <- as.data.frame(matrix(data=rnorm(n=2*N), nrow=N, ncol=2) +
-                           scaling*matrix(data = c(cos(alpha), sin(alpha)),
-                                          nrow = N, ncol = 2) / sin_pi_K)
-        return(data.frame(x = X$V1, y = X$V2))
-    }
+    X <- as.data.frame(matrix(data=rnorm(n=2*N), nrow=N, ncol=2) +
+                       scaling*matrix(data = c(cos(alpha), sin(alpha)),
+                                      nrow = N, ncol = 2) / sin_pi_K)
+    return(data.frame(x = X$V1, y = X$V2))
+}
 
-    set.seed(1)
-    write.table(x = gen_data(200, 4, 5), file = "test.txt",
-                col.names = TRUE, row.names = FALSE,
-                sep = ",", dec = ".")
+set.seed(1)
+write.table(x = gen_data(200, 4, 5), file = "test.txt",
+            col.names = TRUE, row.names = FALSE,
+            sep = ",", dec = ".")
+```
 
 
 ## Apply function on rows / columns with apply
-    counts <- matrix(c(3, 2, 4, 6, 5, 1, 8, 6, 1), ncol = 3)
-    colnames(counts) <- c("sparrow", "dove", "crow")
-    # 2 is The dimension or index over which the function has to be applied:
-    # The number 1 means row‐wise, and the number 2 means column‐wise.
-    # Here, we apply the function over the columns. In the case of moredimensional
-    # arrays, this index can be larger than 2.
-    apply(counts, 2, max)
-    apply(counts, 2, min)
+```r
+counts <- matrix(c(3, 2, 4, 6, 5, 1, 8, 6, 1), ncol = 3)
+colnames(counts) <- c("sparrow", "dove", "crow")
+# 2 is The dimension or index over which the function has to be applied:
+# The number 1 means row‐wise, and the number 2 means column‐wise.
+# Here, we apply the function over the columns. In the case of moredimensional
+# arrays, this index can be larger than 2.
+apply(counts, 2, max)
+apply(counts, 2, min)
+```
+
+
+## Merge two CSV Files with same header
+```r
+d1=read.table("student-mat.csv", sep=";", header=TRUE)
+d2=read.table("student-por.csv", sep=";", header=TRUE)
+
+# Vector of headers
+d3=merge(d1,d2,by=c("school","sex","age","address","famsize","Pstatus","Medu","Fedu","Mjob","Fjob","reason","nursery","internet"))
+print(nrow(d3)) # 382 students
+```
 
 
 # Data Cleanup
 
 
 ## Show information about dataset
-    str(cars)
+```r
+str(cars)
+```
 
 
 ##  Convert yes/no to 1/0 (Replace data frame column values)
-    data$x <- ifelse(data$x=='yes', 1,0) 
+```r
+data$x <- ifelse(data$x=='yes', 1,0) 
+```
 
 
 ## Convert numerical values 1/0 to TRUE/FALSE
-    data$x <- as.logical(as.integer(data$x))
+```r
+data$x <- as.logical(as.integer(data$x))
+```
 
 
 ## Convert factor to numerical integer
-    dataset$x <- as.integer(as.factor(dataset$x))
+```r
+dataset$x <- as.integer(as.factor(dataset$x))
+```
 
 
 ## Convert to factor
-    directions <- c("North", "East", "South", "South")
-    directions.factor <- factor(directions)
+```r
+directions <- c("North", "East", "South", "South")
+directions.factor <- factor(directions)
+```
 
 
 ## Determine the number of NA values in a column (Sum NA Values)
-    # Count NA values in column
-    sum(is.na(dataset$col))
+```r
+# Count NA values in column
+sum(is.na(dataset$col))
 
-    # Count NA values in dataframe
-    sum(is.na(dataset))
+# Count NA values in dataframe
+sum(is.na(dataset))
 
-    # Count NA for each column
-    na_count <-sapply(dataset, function(y) sum(length(which(is.na(y)))))
-    na_count <- data.frame(na_count)
+# Count NA for each column
+na_count <-sapply(dataset, function(y) sum(length(which(is.na(y)))))
+na_count <- data.frame(na_count)
+```
 
 
 ## Divide into groups (Group numerical objects into buckets or bins)
-    # Remove NA values
-    missing.age <- is.na(dataset$age)
-    dataset <- dataset[!missing.age,]
-    
-    # Next we will name our age groups (or "bins" or "buckets") 0-4, 5-9, 10-14 and so on.
-    labs <- c(paste(seq(0, 95, by = 5), seq(0 + 5 - 1, 100 - 1, by = 5), sep = "-"), paste(100, "+", sep = ""))
+```r
+# Remove NA values
+missing.age <- is.na(dataset$age)
+dataset <- dataset[!missing.age,]
 
-    # Convert factor to numerical
-    dataset$age <- as.integer(as.factor(dataset$age))
+# Next we will name our age groups (or "bins" or "buckets") 0-4, 5-9, 10-14 and so on.
+labs <- c(paste(seq(0, 95, by = 5), seq(0 + 5 - 1, 100 - 1, by = 5), sep = "-"), paste(100, "+", sep = ""))
 
-    # To add the ages to age groups, we create a new column agegroup and use the cut function to 
-    # break age into groups with the labels we defined in the previous step.
-    dataset$agegroup <- cut(dataset$age, breaks = c(seq(0, 100, by = 5), Inf), labels = labs, right = FALSE)
-    # new AgeGroup column shown alongside the Age data.
-    head(dataset[c("age", "agegroup")], 15)
+# Convert factor to numerical
+dataset$age <- as.integer(as.factor(dataset$age))
+
+# To add the ages to age groups, we create a new column agegroup and use the cut function to 
+# break age into groups with the labels we defined in the previous step.
+dataset$agegroup <- cut(dataset$age, breaks = c(seq(0, 100, by = 5), Inf), labels = labs, right = FALSE)
+# new AgeGroup column shown alongside the Age data.
+head(dataset[c("age", "agegroup")], 15)
+```
 
 
 ## Remove columns
-    # Remove column by name
-    dataset$x <- NULL
+```r
+# Remove column by name
+dataset$x <- NULL
 
-    # Remove column by index (second column)
-    data[2] <- NULL
-    
-    # Remove multiple columns by index
-    data[c(1,6,10,12,13,14,15)] <- NULL
+# Remove column by index (second column)
+data[2] <- NULL
+
+# Remove multiple columns by index
+data[c(1,6,10,12,13,14,15)] <- NULL
+```
 
 
 ## Get 20 records data sample
-    data("iris")
-    iris[sample(nrow(iris), 20),]
+```r
+data("iris")
+iris[sample(nrow(iris), 20),]
+```
 
 
 # Plots
 
 
 ## Semilog plot (one log-scale axis)
-    x = 1:100
-    y = x^2
-    plot(x, y, log="y")
+```r
+x = 1:100
+y = x^2
+plot(x, y, log="y")
+```
 
 
 ## Basic Histogram     
