@@ -5,34 +5,42 @@ Collection of R code snippets
 # Basics
 
 
-## IF
-    if (i > 3){
-        print("Yes")
-    } 
-    else {
-        print("No")
-    }
+## If
+```r
+if (i > 3){
+    print("Yes")
+} 
+else {
+    print("No")
+}
+```
 
 
-## WHILE
-    while (i < 5){
-        print(i)
-        i <- i + 1
-    }
+## While
+```r
+while (i < 5){
+    print(i)
+    i <- i + 1
+}
+```
 
 
-## FOR
-    for (i in 1:4){
-        j <- i + 10
-        print(j)
-    }
+## For
+```r
+for (i in 1:4){
+    j <- i + 10
+    print(j)
+}
+```
 
 
-## HELLO WORLD
-    sayHello <- function(){
-        print('Hello World')
-    }
-    sayHello()
+## Hello World from function
+```r
+sayHello <- function(){
+    print('Hello World')
+}
+sayHello()
+```
 
 
 # Program inside
@@ -89,40 +97,44 @@ savehistory(file = "Chapter3.Rhistory")
 ```
 
 
-## Working Directory 
-    # Check working directory (by default should be your user folder)
-    getwd()
-    
-    # Set working directory
-    setwd()
+## Working Directory
+```r
+# Check working directory (by default should be your user folder)
+getwd()
+
+# Set working directory
+setwd()
+```
 
 
 ## Files
-    # Construct the universal path to a file from components in a platform-independent way
-    file.path("F:", "git", "main", "data", "README.md" )
-    # "F:/git/main/data/README.md"
+```r
+# Construct the universal path to a file from components in a platform-independent way
+file.path("F:", "git", "main", "data", "README.md" )
+# "F:/git/main/data/README.md"
 
-    # Lists files in a directory
-    list.files()
+# Lists files in a directory
+list.files()
 
-    # Lists subdirectories of a directory
-    list.dirs()
+# Lists subdirectories of a directory
+list.dirs()
 
-    # Tests whether a specific file exists in a location.
-    file.exists()
-    
-    # Creates a file
-    file.create()
+# Tests whether a specific file exists in a location.
+file.exists()
 
-    # Deletes files (and directories in Unix operating systems)
-    file.remove()
+# Creates a file
+file.create()
 
-    # Returns a name for a temporary file. If you create a file for example, with file.create() or write.
-    # table() using this returned name R creates a file in a temporary folder
-    tempfile()
+# Deletes files (and directories in Unix operating systems)
+file.remove()
 
-    # Returns the file path of a temporary folder on your file system
-    tempdir()
+# Returns a name for a temporary file. If you create a file for example, with file.create() or write.
+# table() using this returned name R creates a file in a temporary folder
+tempfile()
+
+# Returns the file path of a temporary folder on your file system
+tempdir()
+```
 
 
 # Strings
@@ -188,7 +200,7 @@ savehistory(file = "Chapter3.Rhistory")
     #> [1] NA   "an" NA
 
 
-# Vector
+# Vectors
 
 
 ## Assign values to variables
@@ -408,32 +420,35 @@ multi.sapply(cars, min, mean, max)
 ```
 
 
-## Creating errors
+## Throwing / Creating errors
 ```r
 logitpercent <- function(x){
-if( any(x < 0 | x > 1) ) stop("x not between 0 and 1")
-log(x / (1 - x) )
+    if( any(x < 0 | x > 1) ) stop("x not between 0 and 1")
+        log(x / (1 - x) )
 }
 
 logit(c("50%", "150%")) # Error in logit(as.numeric(x)/100) : x not between 0 and 1
 ```
 
 
-## Creating warnings
-    logitpercent <- function(x){
-    x <- ifelse(x < 0 | x > 1, NA, x )
-    if( any(is.na(x)) ) warning("x not between 0 and 1")
+## Create warnings
+```r
+logitpercent <- function(x){
+x <- ifelse(x < 0 | x > 1, NA, x )
+if( any(is.na(x)) ) warning("x not between 0 and 1")
     log(x / (1 - x) )
-    }
-    
-    logitpercent(c("50%", "150%")) # Warning message: In logit(as.numeric(x)/100) : x not between 0 and 1
+}
+
+logitpercent(c("50%", "150%")) # Warning message: In logit(as.numeric(x)/100) : x not between 0 and 1
+```
 
 
 ## Gray Code
+
     GrayEncode <- function(binary) {
         gray <- substr(binary,1,1)
         repeat {
-        if  (substr(binary,1,1) != substr(binary,2,2)) gray <- paste(gray,"1",sep="")
+        if (substr(binary,1,1) != substr(binary,2,2)) gray <- paste(gray,"1",sep="")
         else gray <- paste(gray,"0",sep="")
         binary <- substr(binary,2,nchar(binary))
         if (nchar(binary) <=1) {
@@ -445,7 +460,7 @@ logit(c("50%", "150%")) # Error in logit(as.numeric(x)/100) : x not between 0 an
     GrayDecode <- function(gray) {
         binary <- substr(gray,1,1)
         repeat {
-        if  (substr(binary,nchar(binary),nchar(binary)) != substr(gray,2,2)) binary <- paste(binary ,"1",sep="")
+        if (substr(binary,nchar(binary),nchar(binary)) != substr(gray,2,2)) binary <- paste(binary ,"1",sep="")
         else binary <- paste(binary ,"0",sep="")
         gray <- substr(gray,2,nchar(gray))
 
@@ -457,7 +472,7 @@ logit(c("50%", "150%")) # Error in logit(as.numeric(x)/100) : x not between 0 an
     }
 
 
-# Math
+# Math Builtins
     # Newton Symbol/Binomial coefficient
     # Returns the number of possible combinations when drawing y elements at a time from x possibilities
     #  n! / ( k! (n - k)! )
@@ -541,7 +556,7 @@ logit(c("50%", "150%")) # Error in logit(as.numeric(x)/100) : x not between 0 an
     # trunc(5.99) is 5
     trunc(x)
     
-    #round(3.475, digits=2) is 3.48
+    # round(3.475, digits=2) is 3.48
     round(x, digits=n)
 
     # signif(3.475, digits=2) is 3.5
@@ -734,7 +749,7 @@ apply(counts, 2, min)
 ```
 
 
-## Merge two CSV Files with same header
+## Merge two CSV Files with same headers
 ```r
 d1=read.table("student-mat.csv", sep=";", header=TRUE)
 d2=read.table("student-por.csv", sep=";", header=TRUE)
