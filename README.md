@@ -137,18 +137,30 @@ tempdir()
 ```
 
 
+## Get file names
+```r
+filenames <- list.files("C:/path_to_my_data")  
+first_letters <- substr(filenames, 1, 1)  
+table(first_letters)
+```
+
+
 # Strings
 
 
 ## Concatenate multiple text elements. By default, paste() puts a space between the different elements
-    paste("Hello", "world!")
+```r
+paste("Hello", "world!")
+```
 
 
 ## Extract or replace substrings in a character vector.
-    substr(x, start=n1, stop=n2)
-    x <- "abcdef"
-    substr(x, 2, 4) is "bcd"
-    substr(x, 2, 4) <- "22222" is "a222ef"
+```r
+substr(x, start=n1, stop=n2)
+x <- "abcdef"
+substr(x, 2, 4) is "bcd"
+substr(x, 2, 4) <- "22222" is "a222ef"
+```
 
 
 ## Search for pattern in x. If fixed =FALSE then pattern is a regular expression. If fixed=TRUE then pattern is a text string. Returns matching indices. 
